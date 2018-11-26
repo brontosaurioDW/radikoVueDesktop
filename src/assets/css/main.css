@@ -1,0 +1,697 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Tipografias */
+/* Colores */
+@font-face {
+  font-family: "Gobold";
+  src: url("../fonts/gobold_regular-webfont.eot");
+  src: 
+    url("../fonts/gobold_regular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/gobold_regular-webfont.woff2") format("woff2"),
+    url("../fonts/gobold_regular-webfont.woff") format("woff"),
+    url("../fonts/gobold_regular-webfont.svg#goboldregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Ebrima-Bold";
+  src: url("../fonts/Ebrima-Bold.eot");
+  src: 
+    url("../fonts/Ebrima-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Ebrima-Bold.woff2") format("woff2"),
+    url("../fonts/Ebrima-Bold.woff") format("woff"),
+    url("../fonts/Ebrima-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Ebrima";
+  src: url("../fonts/Ebrima.eot");
+  src: 
+    url("../fonts/Ebrima.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Ebrima.woff2") format("woff2"),
+    url("../fonts/Ebrima.woff") format("woff"),
+    url("../fonts/Ebrima.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "icomoon";
+  src: url("../fonts/icomoon.eot");
+  src: 
+    url("../fonts/icomoon.eot#iefix") format("embedded-opentype"),
+    url("../fonts/icomoon.ttf") format("truetype"),
+    url("../fonts/icomoon.woff") format("woff"),
+    url("../fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+[class^=icon-], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ch-right:before {
+  content: "";
+}
+
+.icon-logout:before {
+  content: "";
+}
+
+.icon-cart:before {
+  content: "";
+}
+
+.icon-fruit:before {
+  content: "";
+}
+
+.icon-user:before {
+  content: "";
+}
+
+.icon-chat:before {
+  content: "";
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family: "Ebrima", sans-serif;
+  color: #4b4b4b;
+  background: #F3F3F3;
+}
+
+a,
+button {
+  outline: none;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+a:hover,
+button:hover {
+  color: #FFFFFF;
+}
+
+a.basic {
+  font-family: "Ebrima-Bold", sans-serif;
+  color: #65bc9c;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.red {
+  color: #dd614e;
+}
+
+h2 {
+  font-size: 30px;
+  color: #4b4b4b;
+  text-transform: uppercase;
+  font-family: "Gobold", sans-serif;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 25px;
+  color: #4b4b4b;
+  text-transform: uppercase;
+  font-family: "Gobold", sans-serif;
+  margin-bottom: 20px;
+}
+
+.bold {
+  font-family: "Ebrima-Bold", sans-serif;
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.flex .col-8 {
+  width: 58%;
+}
+.flex .col-4 {
+  width: 40%;
+}
+
+.flex-top {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -ms-grid-row-align: flex-start;
+  align-items: flex-start;
+}
+
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.dashboard .col-left {
+  background: #262626;
+  width: 20%;
+  max-width: 310px;
+  padding: 30px;
+  min-height: 100vh;
+}
+.dashboard .col-right {
+  background: #F3F3F3;
+  width: 80%;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.simple-page .simple-box {
+  margin-top: 25px;
+}
+
+/*  Error  */
+.error {
+  margin: 20px 0;
+  background: #ffd5d5;
+  padding: 15px;
+  border-bottom: 2px solid #c12626;
+  color: #c12626;
+}
+
+.exito {
+  margin: 20px 0;
+  background: #c3e0c4;
+  padding: 15px;
+  border-bottom: 2px solid #377d39;
+  color: #377d39;
+}
+
+.form {
+  margin-top: 25px;
+}
+.form label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+.form .wrap-input {
+  width: 100%;
+  position: relative;
+  border: 1px solid #ddd;
+  background: #FFFFFF;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.form .input,
+.form .select,
+.form .textarea {
+  width: 100%;
+  background: transparent;
+  font-size: 18px;
+  color: #7e7e7e;
+  border: 0;
+  outline: none;
+  margin-top: 15px;
+  padding: 0;
+  box-shadow: none;
+  font-family: "Ebrima", sans-serif;
+}
+.form .half-input {
+  width: 49%;
+}
+.form ::-webkit-input-placeholder {
+  color: #7e7e7e;
+}
+.form ::-moz-placeholder {
+  color: #7e7e7e;
+}
+.form :-ms-input-placeholder {
+  color: #7e7e7e;
+}
+.form :-moz-placeholder {
+  color: #7e7e7e;
+}
+
+.custom-select {
+  position: relative;
+  cursor: pointer;
+}
+.custom-select select {
+  display: none;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 6px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: #8c8c8c transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+.select-items {
+  -webkit-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.26);
+}
+
+.select-items div,
+.select-selected {
+  display: block;
+  width: 100%;
+  background: transparent;
+  font-size: 18px;
+  color: #7e7e7e;
+  border: 0;
+  outline: none;
+  margin-top: 15px;
+}
+
+.select-items div {
+  padding: 15px;
+  margin: 0;
+}
+
+.select-items {
+  position: absolute;
+  background-color: #FFFFFF;
+  top: 100%;
+  left: -16px;
+  right: -16px;
+  z-index: 99;
+  margin-top: 16px;
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dg-main-content {
+  max-width: 440px;
+  padding: 25px;
+  border-radius: 0;
+}
+
+.dg-content-body {
+  border: 0;
+}
+
+.dg-content {
+  font-size: 19px;
+  line-height: normal;
+}
+
+.btn {
+  display: inline-block;
+  line-height: 35px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding: 0 15px;
+  border: 0;
+  background: #262626;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn-lg {
+  font-size: 15px;
+  line-height: 50px;
+}
+
+.btn-primary {
+  background: #7065ab;
+  border-bottom: 3px solid #534699;
+}
+
+.btn-secondary,
+.dg-btn--ok {
+  background: #dd614e;
+  border-bottom: 3px solid #ab3b2a;
+}
+
+.btn-terciary,
+.dg-btn--cancel {
+  background: #65bc9c;
+  border-bottom: 3px solid #2f6d56;
+}
+
+.cta-abs {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+}
+
+.dg-btn--ok,
+.dg-btn--cancel {
+  border-radius: 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  color: #FFFFFF;
+  display: inline-block;
+  line-height: 35px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding: 0 15px;
+  transition: 0.3s;
+  font-weight: normal;
+}
+
+.table-b tr td:last-child,
+.table-b tr th:last-child {
+  width: 240px;
+}
+
+h1 a {
+  display: block;
+  width: 245px;
+  height: 150px;
+  background: url(../img/logo.png) no-repeat 0 0 transparent;
+  font-size: 0;
+  color: transparent;
+}
+
+.user {
+  color: #F3F3F3;
+  font-size: 15px;
+  line-height: 150%;
+  border-top: 1px solid #424242;
+  margin: 30px -30px 0;
+  padding: 20px 30px;
+}
+.user .user-photo {
+  width: 60px;
+  height: auto;
+  margin-right: 20px;
+}
+.user .user-photo img {
+  width: 100%;
+  height: auto;
+}
+.user .user-photo,
+.user .user-info {
+  vertical-align: middle;
+  display: inline-block;
+}
+.user .user-info span {
+  margin: 0;
+}
+
+.menu {
+  margin: 0 -30px;
+}
+.menu li {
+  border-bottom: 1px solid #424242;
+}
+.menu li:first-child {
+  border-top: 1px solid #424242;
+}
+.menu li i {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #6d6d6d;
+  fill: #6d6d6d;
+  width: auto;
+  height: auto;
+}
+.menu li i + span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.menu a {
+  color: #696969;
+  letter-spacing: 2px;
+  display: block;
+  padding: 0 30px;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 55px;
+}
+.menu .router-link-active {
+  background: #1b1b1b;
+}
+.menu .router-link-active + .submenu {
+  display: block;
+}
+
+.submenu {
+  display: none;
+}
+.submenu li {
+  border-bottom: 0;
+}
+.submenu a {
+  background: #1b1b1b;
+  font-size: 11px;
+  padding-left: 65px;
+  line-height: 45px;
+}
+
+.info-top {
+  width: 100%;
+  margin-bottom: 40px;
+}
+.info-top ul {
+  display: flex;
+  margin: 0 -1%;
+}
+.info-top li {
+  width: 24%;
+  margin: 0 1%;
+}
+.info-top li i {
+  font-size: 28px;
+  margin-right: 20px;
+  color: #FFFFFF;
+  fill: #FFFFFF;
+}
+.info-top li i,
+.info-top li i + span {
+  vertical-align: middle;
+  display: inline-block;
+}
+.info-top li span span span {
+  display: block;
+  font-size: 23px;
+}
+.info-top li:nth-child(4n+1) {
+  background-color: #7065ab;
+}
+.info-top li:nth-child(4n+2) {
+  background-color: #dd614e;
+}
+.info-top li:nth-child(4n+3) {
+  background-color: #65bc9c;
+}
+.info-top li:nth-child(4n+4) {
+  background-color: #f09f4c;
+}
+.info-top a {
+  font-size: 18px;
+  height: 100px;
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.simple-box.product {
+  margin: 0;
+}
+.simple-box.product h2 {
+  font-size: 30px;
+}
+
+.product-left {
+  width: 50%;
+}
+
+.product-right {
+  width: 49%;
+}
+
+.product-photo img {
+  max-width: 100%;
+}
+
+.product-info {
+  margin-top: 25px;
+}
+.product-info p {
+  line-height: 150%;
+}
+
+.product-bottom {
+  margin-top: 25px;
+}
+
+.stock-ok {
+  color: #65bc9c;
+}
+
+.stock-no {
+  color: #dd614e;
+}
+
+.simple-box {
+  background: #FFFFFF;
+  margin-bottom: 35px;
+  padding: 20px 0 0 0;
+  overflow: hidden;
+}
+.simple-box.box-a {
+  padding: 20px;
+}
+.simple-box table {
+  width: 100%;
+}
+.simple-box table td,
+.simple-box table th {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition: 0.3s;
+  text-transform: capitalize;
+}
+.simple-box table th {
+  padding-top: 0;
+}
+.simple-box table th {
+  font-weight: bold;
+  font-family: "Ebrima-Bold", sans-serif;
+}
+.simple-box table tr td:last-child,
+.simple-box table tr th:last-child {
+  text-align: right;
+  width: 20px;
+}
+.simple-box table tr td:last-child i,
+.simple-box table tr th:last-child i {
+  font-size: 17px;
+  font-weight: bold;
+  color: #f09f4c;
+  fill: #f09f4c;
+}
+.simple-box .table-a {
+  margin-bottom: 20px;
+}
+.simple-box .table-a td,
+.simple-box .table-a th {
+  padding: 15px;
+}
+.simple-box .table-b tr td:last-child,
+.simple-box .table-b tr th:last-child {
+  width: 260px;
+  text-align: left;
+}
+.simple-box .table-c td,
+.simple-box .table-c th {
+  padding: 20px 15px;
+}
+.simple-box .table-c tr td:last-child,
+.simple-box .table-c tr th:last-child {
+  width: auto;
+}
+.simple-box .basic {
+  float: right;
+}
+
+/*# sourceMappingURL=css/main.css.map */
