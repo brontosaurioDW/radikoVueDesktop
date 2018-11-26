@@ -22,6 +22,9 @@
 </template>
 
 <script>
+
+	//window.Vue.use(VuejsDialog.main.default)
+	
 	export default {
 
 		name: 'ProductsTableRow',
@@ -48,7 +51,7 @@
 
 		methods: {
 			eliminar(producto) {
-				fetch('api/eliminar-producto.php', {
+				fetch('http://localhost/radikoVueDesktop/api/eliminar-producto.php', {
 					method: 'POST',
 					body: JSON.stringify(producto)
 				})

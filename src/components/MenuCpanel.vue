@@ -58,7 +58,7 @@
 	import DatosHuerta from './DatosHuerta.vue'
 
 	export default {
-		name: 'menu',
+		name: 'menuCpanel',
 
 		components: {
 			DatosHuerta

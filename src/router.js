@@ -7,12 +7,6 @@ import ProductsCreatePage from './views/ProductsCreate.vue'
 import ProductsEditPage from './views/ProductsEdit.vue'
 import LoginPage from './views/Login.vue'
 
-//import ProductsPage from './components/ProductsPage.vue';
-//import LoginPage from './components/LoginPage.vue';
-
-// NEW (30-10-2018) Importamos el store, para poder consultar si el
-// usuario está autenticado.
-
 import store from './store';
 
 Vue.use(Router)
@@ -54,7 +48,6 @@ const router = new Router({
     }
   ]
 });
-
 
 router.beforeEach((to, from, next) => {
 

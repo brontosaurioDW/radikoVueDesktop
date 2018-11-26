@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 
 require('./assets/css/main.css')
+require('./assets/js/vuejs-dialog.min.js')
+
+Vue.use(VuejsDialog.main.default)
 
 Vue.config.productionTip = false
 
