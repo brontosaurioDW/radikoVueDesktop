@@ -1,20 +1,22 @@
 <template>
-  <div class="login">
+	<div class="login">
 
-  	<LoginPage />
+		<LoginPage />
 
-  </div>
+	</div>
 </template>
 
 <script>
 	
-import LoginPage from '../components/LoginPage.vue'
+	import LoginPage from '../components/LoginPage.vue'
 
-export default {
-  name: 'home',
-  components: {
-    LoginPage
-  }
-}
+	export default {
+		name: 'home',
+		components: {
+			LoginPage
+		},
+		created() {
+			this.$store.commit('SET_LAYOUT', 'login-layout')
+		}
+	}
 </script>
-

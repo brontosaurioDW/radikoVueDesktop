@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
+	<div class="home">
 
-  	<HomePage />
+		<HomePage />
 
-  </div>
+	</div>
 </template>
 
 <script>
@@ -11,10 +11,12 @@
 import HomePage from '../components/HomePage.vue'
 
 export default {
-  name: 'home',
-  components: {
-    HomePage
-  }
+	name: 'home',
+	components: {
+		HomePage
+	},
+	created () {
+		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	}
 }
 </script>
-

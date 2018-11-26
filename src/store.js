@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
+		layout: 'login-layout',
 		huerta: [],
 		pedidos: [],
 		productos: [],
@@ -26,6 +27,10 @@ export default new Vuex.Store({
 	},
 
 	mutations: {
+
+		SET_LAYOUT (state, newLayout) {
+			state.layout = newLayout
+		},
 		setHuerta(state, newHuerta) {
 			state.huerta = newHuerta
 		},

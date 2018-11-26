@@ -14,6 +14,9 @@ export default {
   name: 'products',
   components: {
     ProductsPage
-  }
+  },
+	created () {
+		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	}
 }
 </script>
