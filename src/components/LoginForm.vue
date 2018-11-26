@@ -32,7 +32,7 @@
 
 		computed: {
 			errors() {
-				return this.$route.session.status.message
+				return this.$store.session.status.message
 			}
 		},
 
@@ -42,6 +42,9 @@
 					email: this.usuario.email,
 					password: this.usuario.password
 				});
+
+				this.$router.push({ path: '/'})
+
 			}
 		}
 	}
