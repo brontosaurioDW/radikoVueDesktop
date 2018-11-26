@@ -114,6 +114,8 @@ export default new Vuex.Store({
 						nombre: data.data.nombre,
 						email: data.data.email
 					});
+				} else {
+					// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
 				}
 			});
 		}

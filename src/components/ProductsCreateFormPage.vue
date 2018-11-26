@@ -128,7 +128,7 @@
 
 		methods: {
 			grabar(producto) {
-				fetch('http://localhost//radikoVueDesktop/api/grabar-producto.php', {
+				fetch('http://localhost/radikoVueDesktop/api/grabar-producto.php', {
 					method: 'POST',
 					body: JSON.stringify(producto)
 				})

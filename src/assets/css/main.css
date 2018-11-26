@@ -455,12 +455,14 @@ h3 {
 }
 
 h1 a {
-  display: block;
-  width: 245px;
-  height: 150px;
   background: url(../img/logo.png) no-repeat 0 0 transparent;
+  display: block;
+  width: 140px;
+  height: 95px;
   font-size: 0;
   color: transparent;
+  background-size: 100%;
+  margin: 0 auto;
 }
 
 .user {
@@ -679,7 +681,7 @@ h1 a {
 }
 .simple-box .table-b tr td:last-child,
 .simple-box .table-b tr th:last-child {
-  width: 260px;
+  width: 290px;
   text-align: left;
 }
 .simple-box .table-c td,
@@ -692,6 +694,9 @@ h1 a {
 }
 .simple-box .basic {
   float: right;
+}
+.simple-box td a {
+  margin-left: 10px;
 }
 
 /*# sourceMappingURL=css/main.css.map */

@@ -29,22 +29,34 @@ const router = new Router({
     {
       path: '/products',
       name: 'products',
-      component: ProductsPage
+      component: ProductsPage,
+      meta: {
+        requiresAuth: true
+      } 
     },
     {
       path: '/products/create',
       name: 'productsCreate',
-      component: ProductsCreatePage
+      component: ProductsCreatePage,
+      meta: {
+        requiresAuth: true
+      } 
     },
     {
       path: '/products/edit/:id',
       name: 'productsEdit',
-      component: ProductsEditPage
+      component: ProductsEditPage,
+      meta: {
+        requiresAuth: true
+      } 
     },
     {
       path: '/product/:id',
       name: 'single-product',
-      component: ProductDetailPage
+      component: ProductDetailPage,
+      meta: {
+        requiresAuth: true
+      } 
     }
   ]
 });

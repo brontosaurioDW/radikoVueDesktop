@@ -4,8 +4,7 @@
 		<p>Acá podés visualizar todos tus productos, editarlos o eliminarlos</p>
 
 		<router-link to="/products/create" class="btn btn-primary btn-lg cta-abs">
-			<i class="bold">+</i>
-			<span>Agregar producto</span>
+			+ Agregar producto
 		</router-link>
 
 		<div class="simple-box">
