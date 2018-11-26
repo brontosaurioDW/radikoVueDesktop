@@ -101,10 +101,10 @@
 
 		mounted() {
 			let id = this.$route.params.id;
+
 			fetch('http://localhost/radikoVueDesktop/api/producto.php?id=' + id)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data)
 				this.producto = data;
 			});
 		}

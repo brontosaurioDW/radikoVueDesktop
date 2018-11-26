@@ -4,8 +4,10 @@ v<template>
 			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHdGlkKbVAKyIZ4nqEDssi0DZLKLCVi1m4KD92sPs8lC95-OUYBg" alt="Huerta" />
 		</div>
 		<div class="user-info">
-			<span class="block bold">{{ huerta.nombre_huerta }}</span>
-			<span>{{ huerta.razon_social }}</span>
+			<!-- <span class="block bold">{{ huerta.nombre_huerta }}</span> -->
+			<span class="block bold">Bienvenido/a {{ usuario.nombre }}</span>
+			<!-- <span>{{ huerta.razon_social }}</span> -->
+			<!-- <span>{{ usuario.nombre }}</span> -->
 		</div>
 	</div>
 </template>
@@ -13,14 +15,26 @@ v<template>
 <script>
 	
 	export default {
+
+		data() {
+			return {
+				usuario: {
+					nombre: this.$store.state.session.user.nombre
+				}
+			}
+		},
+
 		computed: {
 			huerta() {
 				return this.$store.state.huerta
+			},
+
+			usuario() {
+				return this.$store.state.session.user.nombre
 			}
 		},
 
 		mounted() {
-
 			this.$store.dispatch('loadDatosHuerta')
 		}
 	}

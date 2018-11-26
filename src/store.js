@@ -35,6 +35,9 @@ export default new Vuex.Store({
 		setProducts(state, newProduct) {
 			state.productos = newProduct
 		},
+		setSingleProduct(state, newProduct) {
+			state.producto = newProduct
+		},
 		setCategorias(state, newCategoria) {
 			state.categorias = newCategoria
 		},

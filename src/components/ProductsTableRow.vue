@@ -22,8 +22,6 @@
 </template>
 
 <script>
-
-	//window.Vue.use(VuejsDialog.main.default)
 	
 	export default {
 
