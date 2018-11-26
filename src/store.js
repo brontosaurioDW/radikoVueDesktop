@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-let apiRoute = 'http://localhost/proyectos/radikoVue/api/';
+let apiRoute = 'http://localhost/radikoVueDesktop/api/';
 
 Vue.use(Vuex);
 
@@ -11,7 +11,18 @@ export default new Vuex.Store({
 		pedidos: [],
 		productos: [],
 		categorias: [],
-		unidades: []
+		unidades: [],
+		session: {
+			loading: false,
+			auth: false,
+			user: {
+				nombre: null,
+				email: null
+			},
+			status: {
+				message: null
+			}
+		}
 	},
 
 	mutations: {
@@ -29,6 +40,14 @@ export default new Vuex.Store({
 		},
 		setUnidades(state, newUnidades) {
 			state.unidades = newUnidades
+		},
+		setSessionAuth(state, userData) {
+			state.session.auth = true;
+			state.session.user.nombre = userData.nombre;
+			state.session.user.email = userData.email;
+		},
+		setSessionLogout(state) {
+			state.session.auth = false;
 		}
 	},
 
@@ -38,7 +57,6 @@ export default new Vuex.Store({
 			fetch( apiRoute + 'huerta.php?id=1')
 			.then(respuesta => respuesta.json())
 			.then(data => {
-				// this.huerta = data;
 				context.commit('setHuerta', data);
 			});
 		},
@@ -59,14 +77,14 @@ export default new Vuex.Store({
 			});
 		},
 
-		loadSingleProduct(context) {
-			let id = this.$route.params.id;
-			fetch(apiRoute + 'producto.php?id=' + id)
-			.then(response => response.json())
-			.then(data => {
-				this.producto = data;
-			});
-		},
+		// loadSingleProduct(context) {
+		// 	let id = this.$route.params.id;
+		// 	fetch(apiRoute + 'producto.php?id=' + id)
+		// 	.then(response => response.json())
+		// 	.then(data => {
+		// 		this.producto = data;
+		// 	});
+		// },
 
 		loadCategorias(context) {
 			fetch(apiRoute + 'categorias.php')
@@ -82,12 +100,24 @@ export default new Vuex.Store({
 			.then(data => {
 				context.commit('setUnidades', data);
 			});	
+		},
+
+		login(context, userData) {
+			fetch(apiRoute +'login.php', {
+				method: 'post',
+				body: JSON.stringify(userData)
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log("Datos del login: ", data);
+				if(data.status == 1) {
+					context.commit('setSessionAuth', {
+						nombre: data.data.nombre,
+						email: data.data.email
+					});
+				}
+			});
 		}
+
 	}
 })
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard">
+    
     <div class="col-left">
       <h1>
         <router-link to="/" class="nav-link">

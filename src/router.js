@@ -5,6 +5,7 @@ import ProductsPage from './views/Products.vue'
 import ProductDetailPage from './views/ProductDetail.vue'
 import ProductsCreatePage from './views/ProductsCreate.vue'
 import ProductsEditPage from './views/ProductsEdit.vue'
+import LoginPage from './views/Login.vue'
 
 //import ProductsPage from './components/ProductsPage.vue';
 //import LoginPage from './components/LoginPage.vue';
@@ -22,6 +23,11 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage
     },
     {
       path: '/products',
