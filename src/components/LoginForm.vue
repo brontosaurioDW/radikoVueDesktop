@@ -1,10 +1,10 @@
 <template>
 	<form class="LoginForm" @submit.prevent="attemptLogin()">
-		<div class="LoginForm-fila">
+		<div>
 			<label for="email">Email</label>
 			<input type="email" id="email" v-model="usuario.email">
 		</div>
-		<div class="LoginForm-fila">
+		<div>
 			<label for="password">Password</label>
 			<input type="password" id="password" v-model="usuario.password">
 		</div>
@@ -34,7 +34,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-	
-</style>

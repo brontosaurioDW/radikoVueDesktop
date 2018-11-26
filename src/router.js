@@ -22,7 +22,10 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
@@ -52,37 +55,18 @@ const router = new Router({
   ]
 });
 
-// Lógica de verificación de autenticación de las rutas.
-// beforeEach se ejecuta antes de cada cambio de ruta.
-// Recibe 3 parámetros:
-// to: Object. Los datos de la ruta a la que se está queriendo 
-//  ingresar.
-// from: Object. Los datos de la ruta de la que venimos.
-// next: Function. Función que indica a que ruta ir.
-// SIEMPRE debemos llamar al next() en el beforeEach.
+
 router.beforeEach((to, from, next) => {
-  // Preguntamos si la ruta a la que vamos (to) requiere autenticación.
-  // to.matched.some permite ejecutar una función que verifique alguna
-  // condición, y retorna true si la condición se cumple.
-  // Como está la condición, básicamente pregunta si la ruta tiene 
-  // la propiedad "meta.requiresAuth" en true.
+
   if(to.matched.some(routeData => routeData.meta.requiresAuth)) {
-    // Preguntamos si está autenticado o no.
     if(!store.state.session.auth) {
-      // Si no lo está, lo mandamos para login.
       next('/login');
     } else {
-      // Si está autenticado, lo dejamos pasar.
       next();
     }
   } else {
-    // Si no requiere autenticación, también lo dejamos pasar.
     next();
   }
 });
 
-// export es el comando que permite exportar una estructura
-// para ser importada en otro archivo.
-// "default" indica que es la exportación por defecto.
-// new Router(...) es el valor que estamos exportando.
 export default router;

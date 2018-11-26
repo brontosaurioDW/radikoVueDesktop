@@ -123,7 +123,7 @@
 
 		methods: {
 			editar(producto) {
-				fetch('http://localhost/proyectos/radikoVue/api/editar-producto.php', {
+				fetch('http://localhost/radikoVueDesktop/api/editar-producto.php', {
 					method: 'POST',
 					body: JSON.stringify(producto)
 				})

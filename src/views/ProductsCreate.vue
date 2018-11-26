@@ -7,7 +7,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import ProductsCreateFormPage from '../components/ProductsCreateFormPage.vue'
 
 export default {

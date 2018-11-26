@@ -77,15 +77,6 @@ export default new Vuex.Store({
 			});
 		},
 
-		// loadSingleProduct(context) {
-		// 	let id = this.$route.params.id;
-		// 	fetch(apiRoute + 'producto.php?id=' + id)
-		// 	.then(response => response.json())
-		// 	.then(data => {
-		// 		this.producto = data;
-		// 	});
-		// },
-
 		loadCategorias(context) {
 			fetch(apiRoute + 'categorias.php')
 			.then(respuesta => respuesta.json())
@@ -118,6 +109,5 @@ export default new Vuex.Store({
 				}
 			});
 		}
-
 	}
 })
