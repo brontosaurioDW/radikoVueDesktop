@@ -14,7 +14,6 @@ export default new Vuex.Store({
 		categorias: [],
 		unidades: [],
 		session: {
-			loading: false,
 			auth: false,
 			user: {
 				nombre: null,
