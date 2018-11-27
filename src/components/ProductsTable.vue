@@ -14,6 +14,7 @@
 			<ProductsTableRow 
 			v-for="(producto) in productos"
 			:producto="producto"
+			:key="producto.id_producto"
 			/>
 		</tbody>			
 	</table>

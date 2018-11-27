@@ -22,7 +22,7 @@
 
 		components: {
 			ProductsTable
-		} 
+		}
 	}
 
 </script>
