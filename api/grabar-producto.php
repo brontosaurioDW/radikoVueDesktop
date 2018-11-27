@@ -14,7 +14,7 @@ $query = "INSERT INTO
 		descripcion = :descripcion,
 		marca = :marca,
 		precio = :precio,
-		foto = '',
+		foto = NULL,
 		stock = :stock,
 		activo = '1',
 		estado = '1',
@@ -36,8 +36,6 @@ $exito = $stmt->execute([
 	'categoria' => $postData['categoria'],
 	'unidad' => $postData['unidad']
 ]);
-
-// print_r($stmt->errorInfo());
 
 if($exito) {
 	$salida = [

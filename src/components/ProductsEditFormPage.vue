@@ -143,7 +143,7 @@
 
 		mounted() {
 			let id = this.$route.params.id;
-			fetch('http://localhost/proyectos/radikoVue/api/producto.php?id=' + id)
+			fetch('http://localhost/radikoVueDesktop/api/producto.php?id=' + id)
 			.then(response => response.json())
 			.then(data => {
 				this.producto = data;
