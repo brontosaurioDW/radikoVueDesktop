@@ -274,6 +274,7 @@ h3 {
   background: #FFFFFF;
   padding: 15px;
   margin-bottom: 20px;
+  position: relative;
 }
 .form .input,
 .form .select,
@@ -303,6 +304,10 @@ h3 {
 }
 .form :-moz-placeholder {
   color: #7e7e7e;
+}
+.form .link,
+.form .link:hover {
+  color: #7065ab;
 }
 
 .custom-select {
@@ -612,6 +617,7 @@ h1 a {
 
 .product-photo img {
   max-width: 100%;
+  margin-top: 25px;
 }
 
 .product-info {

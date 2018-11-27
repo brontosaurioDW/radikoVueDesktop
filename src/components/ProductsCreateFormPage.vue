@@ -2,9 +2,9 @@
 	
 	<div class="simple-page">
 		<h2>Nuevo producto</h2>
-		<p>Completa los siguientes datos para cargar un nuevo producto de tu huerta</p>
+		<p>Completá los siguientes datos para cargar un nuevo producto de tu huerta</p>
 
-		<div v-show="isError" class="error">
+		<div v-show="hasError" class="error">
 			<p>{{ statusMsg }}</p>
 		</div>
 
@@ -33,12 +33,15 @@
 
 				<div class="wrap-input">
 					<label class="label-input">Precio <span class="red bold">*</span></label>
-					<input 
-					class="input" 
-					type="text" 
-					name="precio-producto" 
-					placeholder="¿Cuánto sale?"
-					v-model="producto.precio">
+					<div class="precio-input">
+						<span class="price">$</span>
+						<input 
+						class="input" 
+						type="text" 
+						name="precio-producto" 
+						placeholder="¿Cuánto sale?"
+						v-model="producto.precio">
+					</div>
 				</div>
 
 				<div class="wrap-input">
@@ -123,7 +126,7 @@
 				},
 				statusMsg: null,
 				status: null,
-				isError: false
+				hasError: false
 			}
 		},
 
@@ -152,7 +155,7 @@
 					} else {
 						this.status = 0;
 						this.statusMsg = "Error - Algo salió mal"
-						this.isError = true
+						this.hasError = true
 					}
 				});
 			},
@@ -167,3 +170,21 @@
 		}
 	}
 </script>
+
+
+<style>
+	.precio-input {
+		position: relative;
+	}
+	
+	.precio-input span.price {
+		font-size: 18px;
+		position: absolute;
+		left: 0;
+		top: 19px;
+	}
+
+	.precio-input input {
+		text-indent: 25px;
+	}
+</style>

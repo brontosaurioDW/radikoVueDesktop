@@ -2,7 +2,7 @@
 
 	<div class="simple-page">
 		<h2>Editar producto</h2>
-		<p>Completa los siguientes datos para editar el producto</p>
+		<p>Completá los siguientes datos para editar el producto</p>
 		
 		<form @submit.prevent="editar(producto)" class="form">
 			<div class="form-row">
@@ -18,12 +18,15 @@
 
 				<div class="wrap-input">
 					<label class="label-input">Precio <span class="red bold">*</span></label>
-					<input 
-					class="input" 
-					type="text" 
-					name="precio-producto" 
-					placeholder="¿Cuánto sale?"
-					v-model="producto.precio">
+					<div class="precio-input">
+						<span class="price">$</span>
+						<input 
+						class="input" 
+						type="text" 
+						name="precio-producto" 
+						placeholder="¿Cuánto sale?"
+						v-model="producto.precio">
+					</div>
 				</div>
 
 				<div class="wrap-input">
@@ -157,3 +160,20 @@
 
 	}
 </script>
+
+<style>
+	.precio-input {
+		position: relative;
+	}
+	
+	.precio-input span.price {
+		font-size: 18px;
+		position: absolute;
+		left: 0;
+		top: 19px;
+	}
+
+	.precio-input input {
+		text-indent: 25px;
+	}
+</style>

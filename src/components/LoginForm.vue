@@ -18,7 +18,7 @@
 		</div>
 		<button class="FormLogin-submit btn btn-primary btn-lg">Ingresar</button>
 		
-		<p class="RegistroLink">No tenés una cuenta? <router-link to="/register">Registrate</router-link></p>
+		<p class="RegistroLink">No tenés una cuenta? <router-link to="/register" class="link">Registrate</router-link></p>
 
 	</form>
 
