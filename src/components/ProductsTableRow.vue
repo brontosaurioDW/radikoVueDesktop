@@ -15,7 +15,7 @@
 				class="btn btn-terciary">Editar</router-link>
 			<a 
 				class="btn btn-secondary btn-sm" 
-				v-confirm="{ok: dialog => eliminar(producto), message: '¿Seguro que querés eliminar este producto?'}">Eliminar</a>
+				v-confirm="{ok: dialog => eliminar(producto.id_producto, producto), message: '¿Seguro que querés eliminar este producto?'}">Eliminar</a>
 		</td>
 	</tr>
 
