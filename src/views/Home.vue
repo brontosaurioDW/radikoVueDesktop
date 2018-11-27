@@ -15,7 +15,7 @@ export default {
 	components: {
 		HomePage
 	},
-	created () {
+	mounted () {
 		this.$store.commit('SET_LAYOUT', 'principal-layout')
 	}
 }

@@ -108,7 +108,6 @@ export default new Vuex.Store({
 			})
 			.then(response => response.json())
 			.then(data => {
-				// console.log("Datos del login: ", data);
 				if(data.status == 1) {
 					context.commit('setSessionAuth', {
 						nombre: data.data.nombre,

@@ -69,8 +69,6 @@
 				})
 				this.$router.push('/')
 			}
-
-
 		}
 	}
 </script>
