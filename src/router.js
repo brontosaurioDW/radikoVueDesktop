@@ -6,6 +6,7 @@ import ProductDetailPage from './views/ProductDetail.vue'
 import ProductsCreatePage from './views/ProductsCreate.vue'
 import ProductsEditPage from './views/ProductsEdit.vue'
 import LoginPage from './views/Login.vue'
+import RegisterPage from './views/Register.vue'
 
 import store from './store';
 
@@ -25,6 +26,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: LoginPage
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterPage
     },
     {
       path: '/products',

@@ -1,6 +1,6 @@
 <template>
 	<!-- <div class="error">Error de login: {{ errorMsj }}</div>		 -->
-	<form class="LoginForm form" @submit.prevent="attemptLogin()">
+	<form class="LoginForm form" @submit.prevent="attemptLogin">
 		<div class="form-row">
 			<div class="wrap-input">
 				<label for="email">Email</label>
@@ -16,8 +16,9 @@
 			<!-- <div class="error"></div> -->
 		</div>
 		<button class="FormLogin-submit btn btn-primary btn-lg">Ingresar</button>
+		
+		<p class="RegistroLink">No tenés una cuenta? <router-link to="/register">Registrate</router-link></p>
 
-		<p class="RegistroLink">No tenés una cuenta? <a href="#">Registrate</a></p>
 	</form>
 </template>
 
@@ -45,8 +46,7 @@
 				this.$store.dispatch('login', {
 					email: this.usuario.email,
 					password: this.usuario.password
-				});
-				this.$router.push({ path: '/'})
+				}).then( () => { this.$router.push({name: 'home'}) });
 			}
 		}
 	}

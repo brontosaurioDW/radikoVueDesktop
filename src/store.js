@@ -101,6 +101,7 @@ export default new Vuex.Store({
 		},
 
 		login(context, userData) {
+			
 			fetch(apiRoute +'login.php', {
 				method: 'post',
 				body: JSON.stringify(userData)
@@ -112,11 +113,12 @@ export default new Vuex.Store({
 					context.commit('setSessionAuth', {
 						nombre: data.data.nombre,
 						email: data.data.email
-					});
+					})
+
 				} else {
-					// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
-				}
-			});
+						// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
+					}
+				})
 		}
 	}
 })

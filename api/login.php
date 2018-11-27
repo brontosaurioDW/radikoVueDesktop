@@ -17,7 +17,7 @@ $stmt = $db->prepare($query);
 
 $stmt->execute([
 	'email' 	=> $postData['email'],
-	'password' 	=> $postData['password'],
+	'password' 	=> md5($postData['password']),
 ]);
 
 if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
