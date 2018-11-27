@@ -5,6 +5,9 @@
 		<div class="simple-box box-a product">
 			<div class="flex flex-top">
 				<div class="product-left">
+					
+					<router-link to="/products" class="btn btn-primary"> Volver </router-link>
+
 					<div class="product-photo">
 						<img :src="imagen.path" alt="">
 					</div>

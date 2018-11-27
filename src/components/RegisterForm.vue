@@ -29,7 +29,7 @@
 		</div>
 		<button class="FormLogin-submit btn btn-primary btn-lg">Registrarme</button>
 
-		<p class="RegistroLink">Ya tenés una cuenta? <router-link to="/login">Ingresá</router-link></p>
+		<p class="RegistroLink">Ya tenés una cuenta? <router-link to="/login" class="link">Ingresá</router-link></p>
 
 	</form>
 </template>
@@ -89,12 +89,12 @@
 				.then(data => {
 					if(data.status == 1) {
 						this.status = 1;
-						this.statusMsg = "Producto guardado con éxito!";
+						this.statusMsg = "Usuario guardado con éxito!";
 						this.$router.push({ path: '/products', message: this.statusMsg });
 					} else {
 						this.status = 0;
 						this.statusMsg = "Error - Algo salió mal"
-						this.isError = true
+						this.hasError = true
 					}
 				});
 			},
