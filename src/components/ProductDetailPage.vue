@@ -90,7 +90,7 @@
 					if(data.status == 1) {
 						this.status = 1;
 						this.statusMsg = "producto eliminado";
-						router.push({ path: '/productos', message: this.statusMsg });
+						this.$router.push({ path: '/products', message: this.statusMsg });
 					} else {
 						this.status = 0;
 						this.statusMsg = "Error - Algo salió mal"

@@ -12,7 +12,7 @@
 
 					<PedidosTable />
 
-					<router-link to="/productos" class="basic">
+					<router-link to="/products" class="basic">
 						Ver todos
 					</router-link>
 

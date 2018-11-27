@@ -58,7 +58,7 @@
 					if(data.status == 1) {
 						this.status = 1;
 						this.statusMsg = "producto eliminado";
-						this.$router.go({ path: '/productos' });
+						this.$router.push({ path: '/products' });
 					} else {
 						this.status = 0;
 						this.statusMsg = "Error - Algo salió mal"
