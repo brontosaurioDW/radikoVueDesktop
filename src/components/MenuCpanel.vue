@@ -42,7 +42,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a @click="logout()">
 					<i class="icon icon-logout"></i>
 					<span>Cerrar sesión</span>
 				</a>
@@ -62,6 +62,13 @@
 
 		components: {
 			DatosHuerta
+		},
+
+		methods: {
+			logout() {
+				this.$store.dispatch('logout')
+				this.$router.push('/login')
+			}
 		}
 	}
 </script>

@@ -119,6 +119,10 @@ export default new Vuex.Store({
 						// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
 					}
 				})
+		},
+
+		logout(context) {
+			context.commit('setSessionLogout');
 		}
 	}
 })

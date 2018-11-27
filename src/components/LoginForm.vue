@@ -1,6 +1,6 @@
 <template>
 	<!-- <div class="error">Error de login: {{ errorMsj }}</div>		 -->
-	<form class="LoginForm form" @submit.prevent="attemptLogin">
+	<form class="LoginForm form" @submit.prevent="attemptLogin(usuario)">
 
 		<div class="form-row">
 			<div class="wrap-input">
@@ -26,21 +26,21 @@
 
 <script>
 
-import { Validator } from 'vee-validate';
+	import { Validator } from 'vee-validate';
 
-const diccionario = {
-  custom: {
-    email: {
-      required: 'El campo email no puede estar vacio',
-      email: 'Debe ingresar un mail válido'
-    },
-    password: {
-      required: () => 'Debe ingresar una contraseña'
-    }
-  }
-};
+	const diccionario = {
+		custom: {
+			email: {
+				required: 'El campo email no puede estar vacio',
+				email: 'Debe ingresar un mail válido'
+			},
+			password: {
+				required: () => 'Debe ingresar una contraseña'
+			}
+		}
+	};
 
-Validator.localize('en', diccionario);
+	Validator.localize('en', diccionario);
 
 	export default {
 		name:'LoginForm',
@@ -66,8 +66,11 @@ Validator.localize('en', diccionario);
 				this.$store.dispatch('login', {
 					email: this.usuario.email,
 					password: this.usuario.password
-				}).then( () => { this.$router.push({name: 'home'}) });
+				})
+				this.$router.push('/')
 			}
+
+
 		}
 	}
 </script>
