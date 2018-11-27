@@ -5,7 +5,7 @@ v<template>
 		</div>
 		<div class="user-info">
 			<!-- <span class="block bold">{{ huerta.nombre_huerta }}</span> -->
-			<span class="block bold">Bienvenido/a {{ usuario.nombre }}</span>
+			<span class="block bold">Bienvenido/a {{ nombre }}</span>
 			<!-- <span>{{ huerta.razon_social }}</span> -->
 			<!-- <span>{{ usuario.nombre }}</span> -->
 		</div>
@@ -18,9 +18,7 @@ v<template>
 
 		data() {
 			return {
-				usuario: {
-					nombre: this.$store.state.session.user.nombre
-				}
+				nombre: this.$store.state.session.user.nombre
 			}
 		},
 

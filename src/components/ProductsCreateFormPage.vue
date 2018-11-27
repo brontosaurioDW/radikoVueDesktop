@@ -10,6 +10,17 @@
 
 		<form @submit.prevent="grabar(producto)" class="form">
 			<div class="form-row">
+				<!-- <div class="wrap-input">
+					<label class="label-input">Imagen</label>
+					<input 
+					class="input" 
+					type="file" 
+					name="foto" 
+					placeholder="Sube una imagen"
+					accept="image/*"
+					@change="onFileSelected">
+				</div> -->
+
 				<div class="wrap-input">
 					<label class="label-input">Nombre del producto <span class="red bold">*</span></label>
 					<input 
@@ -107,7 +118,8 @@
 					stock: '',
 					categoria: '',
 					estado: '',
-					unidad: ''
+					unidad: '',
+					foto: ''
 				},
 				statusMsg: null,
 				status: null,
@@ -123,7 +135,6 @@
 			unidades() {
 				return this.$store.state.unidades
 			}
-
 		},
 
 		methods: {
@@ -144,7 +155,10 @@
 						this.isError = true
 					}
 				});
-			}
+			},
+			/*onFileSelected(event) {
+				this.producto.foto 	= event.target.files[0].name			
+			}*/
 		},
 
 		mounted() {

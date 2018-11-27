@@ -5,7 +5,6 @@ header('Access-Control-Allow-Origin: *');
 $db = new PDO('mysql:host=localhost:3306;dbname=dw6_radiko;charset=utf8', 'root', '');
 
 $buffer = file_get_contents('php://input');
-
 $postData = json_decode($buffer, true);
 
 $query = "INSERT INTO
@@ -15,7 +14,7 @@ $query = "INSERT INTO
 		descripcion = :descripcion,
 		marca = :marca,
 		precio = :precio,
-		foto = NULL,
+		foto = '',
 		stock = :stock,
 		activo = '1',
 		estado = '1',
@@ -31,6 +30,7 @@ $exito = $stmt->execute([
 	'producto' => $postData['producto'],
 	'descripcion' => $postData['descripcion'],
 	'marca' => $postData['marca'],
+	/*'foto' => $postData['foto'],*/
 	'precio' => $postData['precio'],
 	'stock' => $postData['stock'],
 	'categoria' => $postData['categoria'],
