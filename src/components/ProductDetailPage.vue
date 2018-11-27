@@ -6,9 +6,7 @@
 			<div class="flex flex-top">
 				<div class="product-left">
 					<div class="product-photo">
-						<!-- <img :src="imagen" alt=""> -->
-						<!-- <img :src="'../assets/img/' + imagen" alt=""> -->
-						<!-- <img alt="Vue logo" src="../assets/img/pera.jpeg"> -->
+						<img :src="imagen.path" alt="">
 					</div>
 					<div class="product-info">
 						<h2>{{producto.producto}}</h2>
@@ -69,12 +67,14 @@
 				}
 			},
 			imagen(){
-				if (this.producto.foto == null) {
-					console.log('default image')
-					return '../assets/img/imgdefault.jpeg' ;
+				if (this.producto.foto != null) {
+					return {
+					    path: require("../assets/img/" + this.producto.foto)
+					};
 				} else {
-					console.log(this.producto.foto)
-					return this.producto.foto;
+					return {
+					    path: require("../assets/img/imgdefault.jpeg")
+					};
 				}
 			}
 		},
