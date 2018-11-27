@@ -526,11 +526,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW6_RADIKO`;
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (1, 'unidad');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (2, 'litro');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (3, 'centímetro cúbico');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (4, 'gramo');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (5, 'kilogramo');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (1, 'u.');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (2, 'lt.');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (3, 'cc.');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (4, 'gr.');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (5, 'kg.');
 
 COMMIT;
 

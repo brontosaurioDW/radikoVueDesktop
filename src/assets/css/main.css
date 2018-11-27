@@ -556,7 +556,7 @@ h1 a {
   margin: 0 1%;
 }
 .info-top li i {
-  font-size: 28px;
+  font-size: 20px;
   margin-right: 20px;
   color: #FFFFFF;
   fill: #FFFFFF;
@@ -568,7 +568,7 @@ h1 a {
 }
 .info-top li span span span {
   display: block;
-  font-size: 23px;
+  font-size: 18px;
 }
 .info-top li:nth-child(4n+1) {
   background-color: #7065ab;

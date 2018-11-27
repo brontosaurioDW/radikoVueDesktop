@@ -12,7 +12,7 @@
 		</thead>
 		<tbody>
 			<ProductsTableRow 
-			v-for="(producto, index) in productos"
+			v-for="(producto) in productos"
 			:producto="producto"
 			/>
 		</tbody>			
