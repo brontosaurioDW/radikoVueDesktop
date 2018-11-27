@@ -68,7 +68,7 @@
 					email: null,
 					password: null
 				},
-				//errorMsj: this.$route.session.status.message
+				//errorMsj: this.$route.session.status.message 
 			};
 		},
 
