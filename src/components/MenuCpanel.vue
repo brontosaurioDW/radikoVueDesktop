@@ -16,7 +16,7 @@
 				</router-link>
 				<ul class="submenu">
 					<li>
-						<router-link to="/productos/create" class="nav-link">
+						<router-link to="/products/create" class="nav-link">
 							<i class="icon">+</i>
 							<span>Agregar producto</span>
 						</router-link>
