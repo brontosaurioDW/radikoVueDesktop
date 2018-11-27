@@ -8,8 +8,6 @@ $buffer = file_get_contents('php://input');
 
 $postData = json_decode($buffer, true);
 
-// print_r($postData);
-
 $query = "UPDATE 
 	productos 
 SET
