@@ -147,7 +147,7 @@
 			.then(response => response.json())
 			.then(data => {
 				this.producto = data;
-				console.log(data)
+				/*console.log(data)*/
 			});
 	
 			this.$store.dispatch('loadCategorias')
