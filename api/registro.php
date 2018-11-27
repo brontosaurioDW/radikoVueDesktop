@@ -9,7 +9,7 @@ $buffer = file_get_contents('php://input');
 $postData = json_decode($buffer, true);
 
 $query = "INSERT INTO
-		usuarios 
+		usuarios
 	SET
 		nombre = :nombre,
 		email = :email,
