@@ -62,7 +62,7 @@ const router = new Router({
       component: ProductDetailPage,
       meta: {
         requiresAuth: true
-      } 
+      }
     }
   ]
 });

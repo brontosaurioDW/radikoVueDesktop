@@ -23,7 +23,7 @@ $stmt->execute([
 if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 	$token = generateToken($fila['id_usuario']);
 
-	setcookie('token', $token, 3600, "", "", false, true);
+	setcookie('token', $token, time() + 3600, "", "", false, true);
 
 	echo json_encode([
 		'status' => 1,

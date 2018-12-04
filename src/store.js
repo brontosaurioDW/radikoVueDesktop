@@ -101,23 +101,25 @@ export default new Vuex.Store({
 		},
 
 		login(context, userData) {
-			
-			fetch(apiRoute +'login.php', {
-				method: 'post',
-				body: JSON.stringify(userData)
-			})
-			.then(response => response.json())
-			.then(data => {
-				if(data.status == 1) {
-					context.commit('setSessionAuth', {
-						nombre: data.data.nombre,
-						email: data.data.email
-					})
-
-				} else {
-						// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'login.php', {
+					method: 'post',
+					body: JSON.stringify(userData)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if(data.status == 1) {
+						context.commit('setSessionAuth', {
+							nombre: data.data.nombre,
+							email: data.data.email
+						})
+						resolve();
+					} else {
+						reject();
+							// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
 					}
 				})
+			});
 		},
 
 		logout(context) {

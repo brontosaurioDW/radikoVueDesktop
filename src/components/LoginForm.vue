@@ -66,9 +66,10 @@
 				this.$store.dispatch('login', {
 					email: this.usuario.email,
 					password: this.usuario.password
-				})
-				this.$router.push('/')
-			}
+				}).then(() => {
+					this.$router.push('/');
+				}).catch(() => console.log("Error"));
+			} 
 		}
 	}
 </script>

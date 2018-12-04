@@ -12,9 +12,10 @@
 		</thead>
 		<tbody>
 			<ProductsTableRow 
-			v-for="(producto) in productos"
+			v-for="(producto, index) in productos"
 			:producto="producto"
 			:key="producto.id_producto"
+			:i="index"
 			/>
 		</tbody>			
 	</table>
