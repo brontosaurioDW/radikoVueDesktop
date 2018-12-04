@@ -15,13 +15,14 @@
 				class="btn btn-terciary">Editar</router-link>
 			<a 
 				class="btn btn-secondary btn-sm" 
-				v-confirm="{ok: dialog => eliminar(producto.id_producto, producto), message: '¿Seguro que querés eliminar este producto?'}">Eliminar</a>
+				v-confirm="{ok: dialog => eliminar(), message: '¿Seguro que querés eliminar este producto?'}">Eliminar</a>
 		</td>
 	</tr>
 
 </template>
 
 <script>
+	import { mapState } from 'vuex';
 	
 	export default {
 
@@ -40,24 +41,39 @@
 					return '-';
 				}
 				return this.producto.marca;
-			}
+			},
+			...mapState({
+				productosState: state => state.productos
+			})
 		},
 
 		props: {
-			producto: Object
+			producto: Object,
+			i: Number
 		},
 
 		methods: {
-			eliminar(producto) {
+			eliminar() {
 				fetch('http://localhost/radikoVueDesktop/api/eliminar-producto.php', {
 					method: 'POST',
-					body: JSON.stringify(producto)
+					body: JSON.stringify(this.producto)
 				})
 				.then(response => response.json())
 				.then(data => {
 					if(data.status == 1) {
 						this.status = 1;
 						this.statusMsg = "producto eliminado";
+
+						// Eliminamos el producto del store.
+						// Hack horrible.
+						// let productos = this.$store.state.productos;
+
+						// console.log(this.productosState, this.i);
+						let productos = JSON.parse(JSON.stringify(this.productosState));
+						productos.splice(this.i, 1);
+
+						this.$store.commit('setProducts', productos);
+
 						this.$router.push({ path: '/products' });
 					} else {
 						this.status = 0;
