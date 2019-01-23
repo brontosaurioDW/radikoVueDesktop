@@ -1,25 +1,37 @@
 <template>
 	<div class="flex flex-top">
 		<div class="col-8">
-			<h2>Chat con <span>Pepe</span></h2>
+			<h2>Chat con <span>Pepe</span><span id="titulo"></span></h2>
 
 			<div id="mensajes" class="simple-box">
 				<ul>
 					<li>
-						<span>Pepe</span>
-						<span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
+						<div>
+							<span>Pepe</span>
+							<span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
+						</div>	
+						<span class="mensaje-hora">10:15</span>
 					</li>
 					<li>
-						<span>Huerta</span>
-						<span>The point of using Lorem Ipsum.</span>
+						<div>
+							<span>Huerta</span>
+							<span>The point of using Lorem Ipsum.</span>
+						</div>	
+						<span class="mensaje-hora">10:15</span>
 					</li>
 					<li>
-						<span>Pepe</span>
-						<span>Page when looking at its layout.</span>
+						<div>
+							<span>Pepe</span>
+							<span>Page when looking at its layout.</span>
+						</div>	
+						<span class="mensaje-hora">10:15</span>
 					</li>
 					<li>
-						<span>Huerta</span>
-						<span>Will be distracted by the readable content.</span>
+						<div>
+							<span>Huerta</span>
+							<span>Will be distracted by the readable content.</span>
+						</div>	
+						<span class="mensaje-hora">10:15</span>
 					</li>
 				</ul>
 			</div>
@@ -94,6 +106,7 @@
 			this.$store.dispatch('loadClientes');
 		}
 	}
+	
 </script>
 
 <style>
@@ -108,16 +121,19 @@
 	#mensajes li{
 		display: inline-block;
 		width: 70%;
-		margin-bottom: 5px;
-		padding: 15px;
+		margin-bottom: 5px;	
 		color: white;
 	}	
 	#mensajes li:nth-child(even){
 		float: right;
-		background-color: #65bc9c;
 		text-align: right;
 	}
-	#mensajes li:nth-child(odd){
+	#mensajes li:nth-child(even) div{
+		padding: 15px;
+		background-color: #65bc9c;
+	}
+	#mensajes li:nth-child(odd) div{
+		padding: 15px;
 		background-color: #7065ab;
 	}	
 	#mensajes span{
@@ -128,6 +144,12 @@
 		font-family: "Ebrima-Bold";
 		text-transform: uppercase;
 	}
+	#mensajes .mensaje-hora{
+		margin-top: 2px;
+		font-size: 10px;
+		color: #696969;
+	}
+	
 	#clientes{
 		padding: 15px;
 	}
