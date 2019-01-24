@@ -1,22 +1,21 @@
 <template>
-  <div class="chat">
+	<div class="chat">
 
-  	<ChatPage />
+		<ChatPage />
 
-  </div>
+	</div>
 </template>
 
 <script>
+	import ChatPage from '../components/ChatPage.vue'
 
-import ChatPage from '../components/ChatPage.vue'
-
-export default {
-  name: 'chat',
-  components: {
-    ChatPage
-  },
-	created () {
-		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	export default {
+	  name: 'chat',
+	  components: {
+		ChatPage
+	  },
+		created () {
+			this.$store.commit('SET_LAYOUT', 'principal-layout')
+		}
 	}
-}
 </script>

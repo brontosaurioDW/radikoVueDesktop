@@ -1,42 +1,24 @@
 <template>
 	<div class="flex flex-top">
 		<div class="col-8">
-			<h2>Chat con <span>Pepe</span><span id="titulo"></span></h2>
+			<h2>Chat con <span>Pepe</span></h2>
 
 			<div id="mensajes" class="simple-box">
-				<ul>
-					<li>
+				<p v-if="mensajes.lenght==0">
+					[No tienes ningún mensaje todavía]
+				</p>
+				<ul> 
+					<li v-for="m in mensajes">
 						<div>
-							<span>Pepe</span>
-							<span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
+							<span>{{m.nombre}}</span>
+							<span>{{m.mensaje}}</span>
 						</div>	
-						<span class="mensaje-hora">10:15</span>
-					</li>
-					<li>
-						<div>
-							<span>Huerta</span>
-							<span>The point of using Lorem Ipsum.</span>
-						</div>	
-						<span class="mensaje-hora">10:15</span>
-					</li>
-					<li>
-						<div>
-							<span>Pepe</span>
-							<span>Page when looking at its layout.</span>
-						</div>	
-						<span class="mensaje-hora">10:15</span>
-					</li>
-					<li>
-						<div>
-							<span>Huerta</span>
-							<span>Will be distracted by the readable content.</span>
-						</div>	
-						<span class="mensaje-hora">10:15</span>
+						<span class="mensaje-hora">{{m.time}}</span>
 					</li>
 				</ul>
 			</div>
 
-			<form id="chat" class="form">
+			<form id="chat" class="form" @submit.prevent="guardarMensaje">
 				<div class="form-row">
 				
 					<div class="wrap-input">
@@ -44,7 +26,8 @@
 						<input 
 						id="nombre"
 						class="input" 
-						type="text">
+						type="text"
+						v-model="newMensaje.nombre">
 					</div>
 		
 					<div class="wrap-input">
@@ -53,7 +36,8 @@
 						id="mensaje"
 						class="textarea" 
 						cols="15"
-						rows="3">
+						rows="3"
+						v-model="newMensaje.mensaje">
 						</textarea>
 					</div>
 					
@@ -93,6 +77,27 @@
 </template>
 
 <script>
+	import Firebase from 'firebase'
+  
+	var config = {
+		apiKey: "AIzaSyASnf0ZeHB3PmVt_hxPxZDCqZGaz2HGKaY",
+		authDomain: "radikochat-v2.firebaseapp.com",
+		databaseURL: "https://radikochat-v2.firebaseio.com",
+		projectId: "radikochat-v2",
+		storageBucket: "radikochat-v2.appspot.com",
+		messagingSenderId: "943658148967"
+	}
+	let app = Firebase.initializeApp(config);
+  
+	//Obtenemos la instancia de Firebase. La conexión a la base
+	let fbdb = app.database();
+  
+	//LLAMAR A LOS DATOS DE LA BASE
+	
+	//Tenemos que crear referencias usando el método ref(url). La url es el nodo del Json al que queremos acceder
+	let refMensajes = fbdb.ref('mensajes');
+
+
 	export default {
 		name: 'chat',
 		
@@ -104,6 +109,44 @@
 		
 		mounted() {
 			this.$store.dispatch('loadClientes');
+		},
+		
+		firebase:{
+			mensajes: refMensajes
+		},
+		
+		//esto es lo que vamos a guardar
+		data(){
+			return{
+				newMensaje: {
+					nombre:'',
+					mensaje:'',
+					time:'' /* la obtenemos del this.hoy */
+				},
+				hoy : null
+			}		
+		},
+		
+		//El objeto Vue tendrá una propiedad/variable llamada hoy que al cargarse la aplicación (crearse el objeto Vue) se actualizará con la fecha de hoy. Enero arranca en 0, modificar
+		created : function(){
+			this.hoy = Date.now();
+			this.newMensaje.time = 
+				new Date(this.hoy).getDate()+"-"+
+				new Date(this.hoy).getMonth()+"-"+
+				new Date(this.hoy).getFullYear()+" "+
+				new Date(this.hoy).getHours()+":"+
+				new Date(this.hoy).getMinutes();
+		},
+  
+		methods:{
+			//guardamos
+			guardarMensaje(){
+				console.log(this.newMensaje);
+				refMensajes.push(this.newMensaje);
+				//limpiamos
+				this.newMensaje.nombre = '';
+				this.newMensaje.mensaje = '';
+			}
 		}
 	}
 	

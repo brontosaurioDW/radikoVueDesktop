@@ -30,6 +30,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 Para trabajar con Firebase:
 	1. Se ejecutó desde el cmd en la carpeta del proyecto el comando:
-		npm install firebase
-	2. Se creó la carpeta firebase dentro de la carpeta src
-	3. En la carpeta firebase se creó el archivo init.js (donde se establece la conexión con la base)
+		npm install firebase vuefire
+	2. En main.js se importó Firebase y se pusieron los datos de configuración y referencias.
+	3. Dentro del export (main.js) se pusieron el data (lo que vamos a guardar) y methods (la función de guardar)
