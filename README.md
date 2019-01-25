@@ -33,3 +33,9 @@ Para trabajar con Firebase:
 		npm install firebase vuefire
 	2. En main.js se importó Firebase y se pusieron los datos de configuración y referencias.
 	3. Dentro del export (main.js) se pusieron el data (lo que vamos a guardar) y methods (la función de guardar)
+
+Paquete vue-chat-scroll
+	1. Se ejecutó desde el cmd en la carpeta del proyecto el comando:
+		npm install vue-chat-scroll
+	Permite que el area donde estan los mensajes siempre se posicione en el último (y el scroll se hace hacia arriba)
+	2. En main.js se importó 

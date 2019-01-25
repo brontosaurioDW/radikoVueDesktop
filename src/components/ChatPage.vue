@@ -3,12 +3,12 @@
 		<div class="col-8">
 			<h2>Chat con <span>Pepe</span></h2>
 
-			<div id="mensajes" class="simple-box">
+			<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true}">
 				<p v-if="mensajes.lenght==0">
 					[No tienes ningún mensaje todavía]
 				</p>
 				<ul> 
-					<li v-for="m in mensajes">
+					<li v-for="m in mensajes" :key="m.id">
 						<div>
 							<span>{{m.nombre}}</span>
 							<span>{{m.mensaje}}</span>
@@ -127,7 +127,7 @@
 			}		
 		},
 		
-		//El objeto Vue tendrá una propiedad/variable llamada hoy que al cargarse la aplicación (crearse el objeto Vue) se actualizará con la fecha de hoy. Enero arranca en 0, modificar
+		//El objeto Vue tendrá una propiedad/variable llamada hoy que al cargarse la aplicación (crearse el objeto Vue) se actualizará con la fecha de hoy. Enero arranca en 0 -modificar-
 		created : function(){
 			this.hoy = Date.now();
 			this.newMensaje.time = 
