@@ -20,15 +20,6 @@
 
 			<form id="chat" class="form" @submit.prevent="guardarMensaje">
 				<div class="form-row">
-				
-					<div class="wrap-input">
-						<label class="label-input">Nombre</label>
-						<input 
-						id="nombre"
-						class="input" 
-						type="text"
-						v-model="newMensaje.nombre">
-					</div>
 		
 					<div class="wrap-input">
 						<label class="label-input">Mensaje</label>
@@ -54,7 +45,7 @@
 			<div id="clientes" class="simple-box">
 				<ul v-for="cliente in clientes"
 			:cliente="cliente">
-					<li>
+					<li v-on:click="tomarCliente(cliente)">
 						<div class="chat-user-photo">
 							<img src="../assets/img/user-default.png" alt="Foto usuario" />
 						</div>
@@ -119,7 +110,7 @@
 		data(){
 			return{
 				newMensaje: {
-					nombre:'',
+					nombre: this.$store.state.session.user.nombre,
 					mensaje:'',
 					time:'' /* la obtenemos del this.hoy */
 				},
@@ -144,8 +135,11 @@
 				console.log(this.newMensaje);
 				refMensajes.push(this.newMensaje);
 				//limpiamos
-				this.newMensaje.nombre = '';
 				this.newMensaje.mensaje = '';
+			},
+			
+			tomarCliente(event) {
+				alert('intentando agarrar cliente! Falta pasar propiedades')
 			}
 		}
 	}
