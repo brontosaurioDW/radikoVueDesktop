@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-top">
 		<div class="col-8">
-			<h2>Chat con <span>Pepe</span></h2>
+			<h2>Chat <span id="span-cliente"></span></h2>
 
 			<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true}">
 				<p v-if="mensajes.lenght==0">
@@ -24,11 +24,11 @@
 					<div class="wrap-input">
 						<label class="label-input">Mensaje</label>
 						<textarea 
-						id="mensaje"
-						class="textarea" 
-						cols="15"
-						rows="3"
-						v-model="newMensaje.mensaje">
+							id="mensaje"
+							class="textarea" 
+							cols="15"
+							rows="3"
+							v-model="newMensaje.mensaje">
 						</textarea>
 					</div>
 					
@@ -106,11 +106,11 @@
 			mensajes: refMensajes
 		},
 		
-		//esto es lo que vamos a guardar
 		data(){
 			return{
 				newMensaje: {
-					nombre: this.$store.state.session.user.nombre,
+					//nombre: this.$store.state.session.user.nombre,
+					nombre: '',
 					mensaje:'',
 					time:'' /* la obtenemos del this.hoy */
 				},
@@ -133,13 +133,21 @@
 			//guardamos
 			guardarMensaje(){
 				console.log(this.newMensaje);
-				refMensajes.push(this.newMensaje);
+				/*refMensajes.push(this.newMensaje);
 				//limpiamos
-				this.newMensaje.mensaje = '';
+				this.newMensaje.mensaje = '';*/
+				refMensajes.push({
+					nombre: this.$store.state.session.user.nombre,
+					mensaje: mensaje.value
+				}).then(function(){
+					mensaje.value = "";
+				});
 			},
 			
-			tomarCliente(event) {
-				alert('intentando agarrar cliente! Falta pasar propiedades')
+			tomarCliente(cliente) {
+				console.log('Tomo cliente:' + cliente.nombre);
+				let spanCliente = document.getElementById('span-cliente');
+				spanCliente.innerHTML = 'con ' + cliente.nombre;
 			}
 		}
 	}
