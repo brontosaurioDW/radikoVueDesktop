@@ -33,6 +33,14 @@ const router = new Router({
       name: 'register',
       component: RegisterPage
     },
+	{
+	  path: '/chat',
+	  name: 'chat',
+	  component: ChatPage,
+	  meta: {
+		requiresAuth: true
+	  }
+	},
     {
       path: '/products',
       name: 'products',
@@ -64,15 +72,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
-	{
-	  path: '/chat',
-	  name: 'chat',
-	  component: ChatPage,
-	  meta: {
-		requiresAuth: true
-	  }
-	}
+    }
   ]
 });
 
