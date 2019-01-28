@@ -20,7 +20,7 @@
 
 			<form id="chat" class="form" @submit.prevent="guardarMensaje">
 				<div class="form-row">
-		
+					<p v-if="feedback">{{ feedback }}</p>
 					<div class="wrap-input">
 						<label class="label-input">Mensaje</label>
 						<textarea 
@@ -114,7 +114,8 @@
 					mensaje:'',
 					time:'' /* la obtenemos del this.hoy */
 				},
-				hoy : null
+				hoy : null,
+				feedback: null
 			}		
 		},
 		
@@ -136,12 +137,17 @@
 				/*refMensajes.push(this.newMensaje);
 				//limpiamos
 				this.newMensaje.mensaje = '';*/
-				refMensajes.push({
-					nombre: this.$store.state.session.user.nombre,
-					mensaje: mensaje.value
-				}).then(function(){
+				if(this.newMensaje.mensaje){
+					refMensajes.push({
+						nombre: this.$store.state.session.user.nombre,
+						mensaje: mensaje.value
+					}).then(function(){
 					mensaje.value = "";
-				});
+					});					
+				}else{
+					this.feedback = "Debes escribir algo"
+				}
+				
 			},
 			
 			tomarCliente(cliente) {
