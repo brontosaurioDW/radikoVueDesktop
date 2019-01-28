@@ -133,6 +133,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (
   `id_unidad_medida` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `unidad_de_medida` VARCHAR(45) NOT NULL,
+  `unidad_extendida` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_unidad_medida`),
   UNIQUE INDEX `unidad_de_medida_UNIQUE` (`unidad_de_medida` ASC))
 ENGINE = InnoDB;
@@ -526,11 +527,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW6_RADIKO`;
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (1, 'u.');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (2, 'lt.');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (3, 'cc.');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (4, 'gr.');
-INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`) VALUES (5, 'kg.');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`, `unidad_extendida`) VALUES (1, 'u.', 'Unidad');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`, `unidad_extendida`) VALUES (2, 'lt.', 'Litro');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`, `unidad_extendida`) VALUES (3, 'cc.', 'Centímetro Cúbico');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`, `unidad_extendida`) VALUES (4, 'gr.', 'Gramo');
+INSERT INTO `DW6_RADIKO`.`UNIDADES_DE_MEDIDA` (`id_unidad_medida`, `unidad_de_medida`, `unidad_extendida`) VALUES (5, 'kg.', 'Kilogramo');
 
 COMMIT;
 

@@ -1,6 +1,5 @@
 <template>
-	<div>
-
+	<div class="home-elements">
 		<info-top></info-top>
 
 		<div class="flex flex-top">

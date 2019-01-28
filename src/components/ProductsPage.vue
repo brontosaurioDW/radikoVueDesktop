@@ -10,19 +10,36 @@
 		<div class="simple-box">
 			<ProductsTable />
 		</div>
+		
+		<ul class="disclaimer">
+			<ProductsTableDisclaimerRow 
+			v-for="(unidad, index) in unidades"
+			:unidad="unidad"
+			:key="unidad.id_unidad_medida"
+			:i="index"/> 
+		</ul>
 	</div>
 </template>
 
 <script>
 
-	import ProductsTable from './ProductsTable.vue'
+	import ProductsTable from './ProductsTable.vue';
+	import ProductsTableDisclaimerRow from './ProductsTableDisclaimerRow.vue';
 	
 	export default {
 		name: 'products',
-
 		components: {
-			ProductsTable
-		}
+			ProductsTable,
+			ProductsTableDisclaimerRow
+		},
+		computed: {
+			unidades() {
+				return this.$store.state.unidades;
+			}
+		},
+		mounted() {
+			this.$store.dispatch('loadUnidades')
+		}		
 	}
 
 </script>

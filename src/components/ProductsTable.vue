@@ -23,7 +23,7 @@
 
 <script>
 
-	import ProductsTableRow from './ProductsTableRow.vue'
+	import ProductsTableRow from './ProductsTableRow.vue';
 
 	export default {
 		name: 'ProductsTable',

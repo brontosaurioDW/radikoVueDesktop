@@ -1,12 +1,11 @@
 <template>
-	<div class="home">
-
+	<section class="home">
 		<HomePage />
-
-	</div>
+	</section>
 </template>
 
 <script>
+	
 // @ is an alias to /src
 import HomePage from '../components/HomePage.vue'
 

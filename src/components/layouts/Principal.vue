@@ -1,24 +1,20 @@
- <template>
-  <div class="dashboard">
-
-    <MenuCpanel /> 
-
-    <div class="col-right">
-      <router-view />
+<template>
+    <div class="dashboard">
+        <MenuCpanel />
+        <main class="col-right">
+            <router-view />
+        </main>        
     </div>
-    
-  </div>
 </template>
 
 <script>
+    import MenuCpanel from '../MenuCpanel.vue'
+    export default {
+        name: 'app',
 
-  import MenuCpanel from '../MenuCpanel.vue'
-  export default {
-    name: 'app',
-
-    components: {
-      MenuCpanel
+        components: {
+            MenuCpanel
+        }
     }
-  }
 </script>
 

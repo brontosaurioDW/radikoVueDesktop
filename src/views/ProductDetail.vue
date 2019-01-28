@@ -1,9 +1,7 @@
 <template>
-  <div class="products">
-
-  	<ProductDetailPage />
-
-  </div>
+	<section class="products">
+		<ProductDetailPage />
+	</section>
 </template>
 
 <script>
