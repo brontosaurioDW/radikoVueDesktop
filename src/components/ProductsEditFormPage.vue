@@ -96,7 +96,7 @@
 				</div>
 
 				<div class="text-right">
-					<button class="btn btn-primary btn-lg">Editar</button>
+					<button class="btn btn-primary btn-lg">Guardar cambios</button>
 				</div>
 			</div>
 		</form>
