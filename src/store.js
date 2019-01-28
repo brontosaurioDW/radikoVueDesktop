@@ -13,6 +13,7 @@ export default new Vuex.Store({
 		productos: [],
 		categorias: [],
 		unidades: [],
+		clientes: [],
 		session: {
 			auth: false,
 			user: {
