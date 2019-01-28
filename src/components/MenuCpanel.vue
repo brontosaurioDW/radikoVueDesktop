@@ -36,10 +36,10 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<router-link to="/chat" class="nav-link">
 					<i class="icon icon-chat"></i>
 					<span>Chat</span>
-				</a>
+				</router-link>
 			</li>
 			<li>
 				<a @click="logout()">

@@ -7,6 +7,7 @@ import ProductsCreatePage from './views/ProductsCreate.vue'
 import ProductsEditPage from './views/ProductsEdit.vue'
 import LoginPage from './views/Login.vue'
 import RegisterPage from './views/Register.vue'
+import ChatPage from './views/Chat.vue'
 
 import store from './store';
 
@@ -32,6 +33,14 @@ const router = new Router({
       name: 'register',
       component: RegisterPage
     },
+	{
+	  path: '/chat',
+	  name: 'chat',
+	  component: ChatPage,
+	  meta: {
+		requiresAuth: true
+	  }
+	},
     {
       path: '/products',
       name: 'products',

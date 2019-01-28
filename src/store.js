@@ -13,6 +13,7 @@ export default new Vuex.Store({
 		productos: [],
 		categorias: [],
 		unidades: [],
+		clientes: [],
 		session: {
 			auth: false,
 			user: {
@@ -47,6 +48,9 @@ export default new Vuex.Store({
 		},
 		setUnidades(state, newUnidades) {
 			state.unidades = newUnidades
+		},
+		setClientes(state, newCliente) {
+			state.clientes = newCliente
 		},
 		setSessionAuth(state, userData) {
 			state.session.auth = true;
@@ -89,6 +93,14 @@ export default new Vuex.Store({
 			.then(respuesta => respuesta.json())
 			.then(data => {
 				context.commit('setCategorias', data);
+			});	
+		},
+		
+		loadClientes(context) {
+			fetch(apiRoute + 'clientes.php?id=1')
+			.then(respuesta => respuesta.json())
+			.then(data => {
+				context.commit('setClientes', data);
 			});	
 		},
 
