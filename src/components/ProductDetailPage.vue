@@ -53,7 +53,6 @@
 </template>
 
 <script>
-	
 
 	export default {
 
@@ -74,11 +73,11 @@
 			imagen(){
 				if (this.producto.foto != null) {
 					return {
-					    path: require("../assets/img/" + this.producto.foto)
+						path: require("../assets/img/" + this.producto.foto)
 					};
 				} else {
 					return {
-					    path: require("../assets/img/imgdefault.jpeg")
+						path: require("../assets/img/imgdefault.jpeg")
 					};
 				}
 			}
@@ -107,11 +106,16 @@
 		mounted() {
 			let id = this.$route.params.id;
 
-			fetch('http://localhost/radikoVueDesktop/api/producto.php?id=' + id)
-			.then(response => response.json())
+			this.$store.dispatch('loadSingleProduct', id)
 			.then(data => {
-				this.producto = data;
+				this.producto = this.$store.state.producto;
 			});
+
+			// fetch('http://localhost/radikoVueDesktop/api/producto.php?id=' + id)
+			// .then(response => response.json())
+			// .then(data => {
+			// 	this.producto = data;
+			// });
 		}
 	}
 

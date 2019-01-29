@@ -10,6 +10,17 @@ export default new Vuex.Store({
 		layout: 'login-layout',
 		huerta: [],
 		pedidos: [],
+		// producto: {
+		// 	producto: '',
+		// 	descripcion: '',
+		// 	marca: '',
+		// 	precio: '',
+		// 	stock: '',
+		// 	categoria: '',
+		// 	estado: '',
+		// 	unidad: ''
+		// },
+		producto: {},
 		productos: [],
 		categorias: [],
 		unidades: [],
@@ -128,10 +139,71 @@ export default new Vuex.Store({
 						resolve();
 					} else {
 						reject();
-							// retorna mensaje de error? Deje comentado los espacios para el error en LoginForm.vue (lineas 9 y 16)
 					}
 				})
 			});
+		},
+
+		register(context, userData) {
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'registro.php', {
+					method: 'post',
+					body: JSON.stringify(userData)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.status == 1) {
+						resolve();
+					} else {
+						reject();
+					}
+				})
+			});
+		},
+
+		storeProduct(context, productData) {
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'grabar-producto.php', {
+					method: 'post',
+					body: JSON.stringify(productData)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if(data.status == 1) {
+						resolve()
+					} else {
+						reject()
+					}
+				})
+			})
+		},
+
+		editProduct(context, productData) {
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'editar-producto.php', {
+					method: 'post',
+					body: JSON.stringify(productData)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if(data.status == 1) {
+						resolve()
+					} else {
+						reject()
+					}
+				})
+			})
+		},
+
+		loadSingleProduct(context, id) {
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'producto.php?id=' + id)
+				.then(response => response.json())
+				.then(data => {
+					context.commit('setSingleProduct', data);
+					resolve()
+				})
+			})	
 		},
 
 		logout(context) {

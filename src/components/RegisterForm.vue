@@ -1,37 +1,40 @@
 <template>
-	<!-- <div class="error">Error de login: {{ errorMsj }}</div>		 -->
-	<form class="LoginForm form" @submit.prevent="registro(usuario)">
-		<div class="form-row">
-			<div class="wrap-input">
-				<label for="nombre">Nombre</label>
-				<input type="nombre" name="nombre" id="nombre" v-model="usuario.nombre" class="input" v-validate="'required'">
+	<div>
+		
+		<div v-if="hasError" class="error">{{ errorMsj }}</div>
+
+		<form class="LoginForm form" @submit.prevent="registro(usuario)">
+			<div class="form-row">
+				<div class="wrap-input">
+					<label for="nombre">Nombre</label>
+					<input type="nombre" name="nombre" id="nombre" v-model="usuario.nombre" class="input" v-validate="'required'">
+				</div>
+				<div class="error" v-show="errors.has('nombre')">{{ errors.first('nombre') }}</div>
+				<div class="wrap-input">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" v-model="usuario.email" class="input" v-validate="'required|email'">
+				</div>
+				<div class="error" v-show="errors.has('email')">{{ errors.first('email') }}</div>
 			</div>
-			<div class="error" v-show="errors.has('nombre')">{{ errors.first('nombre') }}</div>
-			<div class="wrap-input">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email" v-model="usuario.email" class="input" v-validate="'required|email'">
+			<div class="form-row">
+				<div class="wrap-input">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" v-model="usuario.password" class="input" v-validate="'required'" ref="password">
+				</div>
+				<div class="error" v-show="errors.has('password')">{{ errors.first('password') }}</div>
 			</div>
-			<div class="error" v-show="errors.has('email')">{{ errors.first('email') }}</div>
-		</div>
-		<div class="form-row">
-			<div class="wrap-input">
-				<label for="password">Password</label>
-				<input type="password" name="password" id="password" v-model="usuario.password" class="input" v-validate="'required'" ref="password">
+			<div class="form-row">
+				<div class="wrap-input">
+					<label for="password_confirmation">Confirmar Password</label>
+					<input type="password" name="password_confirmation" id="password_confirmation" v-model="usuario.password_confirmation" class="input" v-validate="'confirmed:password'" data-vv-as="password">
+				</div>
+				<div class="error" v-show="errors.has('password_confirmation')">{{ errors.first('password_confirmation') }}</div>
 			</div>
-			<div class="error" v-show="errors.has('password')">{{ errors.first('password') }}</div>
-		</div>
-		<div class="form-row">
-			<div class="wrap-input">
-				<label for="password_confirmation">Confirmar Password</label>
-				<input type="password" name="password_confirmation" id="password_confirmation" v-model="usuario.password_confirmation" class="input" v-validate="'confirmed:password'" data-vv-as="password">
-			</div>
-			<div class="error" v-show="errors.has('password_confirmation')">{{ errors.first('password_confirmation') }}</div>
-		</div>
-		<button class="FormLogin-submit btn btn-primary btn-lg">Registrarme</button>
+			<button class="FormLogin-submit btn btn-primary btn-lg">Registrarme</button>
+		</form>
 
 		<p class="RegistroLink">Ya tenés una cuenta? <router-link to="/login" class="link">Ingresá</router-link></p>
-
-	</form>
+	</div>
 </template>
 
 <script>
@@ -68,7 +71,8 @@
 					email: null,
 					password: null
 				},
-				//errorMsj: this.$route.session.status.message 
+				hasError: false,
+				errorMsj: null
 			};
 		},
 
@@ -79,24 +83,18 @@
 		},
 
 		methods: {
-
 			registro(usuario) {
-				fetch('http://localhost/radikoVueDesktop/api/registro.php', {
-					method: 'POST',
-					body: JSON.stringify(usuario)
+				this.$validator.validate()
+				this.$store.dispatch('register', {
+					nombre: usuario.nombre,
+					email: usuario.email,
+					password: usuario.password
+				}).then(() => {
+					this.$router.push('/')
+				}).catch(() => {	
+					this.hasError = true
+					this.errorMsj =  'Error - Verificá los campos nuevamente'
 				})
-				.then(response => response.json())
-				.then(data => {
-					if(data.status == 1) {
-						this.status = 1;
-						this.statusMsg = "Usuario guardado con éxito!";
-						this.$router.push({ path: '/products', message: this.statusMsg });
-					} else {
-						this.status = 0;
-						this.statusMsg = "Error - Algo salió mal"
-						this.hasError = true
-					}
-				});
 			},
 
 			attemptLogin() {

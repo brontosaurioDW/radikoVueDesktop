@@ -131,27 +131,39 @@
 			}
 		},
 		methods: {
+
 			grabar(producto) {
-				fetch('http://localhost/radikoVueDesktop/api/grabar-producto.php', {
-					method: 'POST',
-					body: JSON.stringify(producto)
+				this.$store.dispatch('storeProduct', producto)
+				.then(() => {
+					this.$router.push('/products')
+				}).catch(() => {
+					this.hasError = true
+					this.statusMsg = 'Error - Algo salió mal'
 				})
-				.then(response => response.json())
-				.then(data => {
-					if(data.status == 1) {
-						this.status = 1;
-						this.statusMsg = "Producto guardado con éxito!";
-						this.$router.push({ path: '/products', message: this.statusMsg });
-					} else {
-						this.status = 0;
-						this.statusMsg = "Error - Algo salió mal"
-						this.hasError = true
-					}
-				});
-			},
+			}
+
+			// grabar(producto) {
+			// 	fetch('http://localhost/radikoVueDesktop/api/grabar-producto.php', {
+			// 		method: 'POST',
+			// 		body: JSON.stringify(producto)
+			// 	})
+			// 	.then(response => response.json())
+			// 	.then(data => {
+			// 		if(data.status == 1) {
+			// 			this.status = 1;
+			// 			this.statusMsg = "Producto guardado con éxito!";
+			// 			this.$router.push({ path: '/products', message: this.statusMsg });
+			// 		} else {
+			// 			this.status = 0;
+			// 			this.statusMsg = "Error - Algo salió mal"
+			// 			this.hasError = true
+			// 		}
+			// 	});
+			// },
 			/*onFileSelected(event) {
 								this.producto.foto 	= event.target.files[0].name
 			}*/
+			
 		},
 		mounted() {
 			this.$store.dispatch('loadCategorias')

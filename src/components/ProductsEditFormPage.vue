@@ -4,6 +4,10 @@
 		<h2>Editar producto</h2>
 		<p>Completá los siguientes datos para editar el producto</p>
 		
+		<div v-show="hasError" class="error">
+			<p>{{ statusMsg }}</p>
+		</div>
+
 		<form @submit.prevent="editar(producto)" class="form">
 			<div class="form-row">
 				<div class="wrap-input">
@@ -11,11 +15,11 @@
 						Nombre del producto <span class="red bold">*</span>
 					</label>
 					<input
-						class="input"
-						type="text"
-						name="nombre-producto"
-						placeholder="Escribe el nombre del producto"
-						v-model="producto.producto">
+					class="input"
+					type="text"
+					name="nombre-producto"
+					placeholder="Escribe el nombre del producto"
+					v-model="producto.producto">
 				</div>
 
 				<div class="wrap-input">
@@ -119,7 +123,8 @@
 					unidad: ''
 				},
 				statusMsg: null,
-				status: null
+				status: null,
+				hasError: false
 			}
 		},
 		computed: {
@@ -132,32 +137,23 @@
 		},
 		methods: {
 			editar(producto) {
-				fetch('http://localhost/radikoVueDesktop/api/editar-producto.php', {
-					method: 'POST',
-					body: JSON.stringify(producto)
+				this.$store.dispatch('editProduct', producto)
+				.then(() => {
+					this.$router.push('/products')
+				}).catch(() => {
+					this.hasError = true
+					this.statusMsg = 'Error - Algo salió mal'
 				})
-				.then(response => response.json())
-				.then(data => {
-					if(data.status == 1) {
-						this.status = 1;
-						this.statusMsg = "producto guardado";
-						this.$router.push({ path: '/products', message: this.statusMsg });
-					} else {
-						this.status = 0;
-						this.statusMsg = "Error - Algo salió mal"
-					}
-				});
-			}
+			},
 		},
 		mounted() {
 			let id = this.$route.params.id;
-			fetch('http://localhost/radikoVueDesktop/api/producto.php?id=' + id)
-			.then(response => response.json())
+
+			this.$store.dispatch('loadSingleProduct', id)
 			.then(data => {
-				this.producto = data;
-				console.log(data)
+				this.producto = this.$store.state.producto;
 			});
-	
+
 			this.$store.dispatch('loadCategorias')
 			this.$store.dispatch('loadUnidades')
 		},
@@ -165,17 +161,17 @@
 </script>
 
 <style>
-	.precio-input {
-		position: relative;
-	}
-	
-	.precio-input span.price {
-		font-size: 18px;
-		position: absolute;
-		left: 0;
-		top: 19px;
-	}
-	.precio-input input {
-		text-indent: 25px;
-	}
+.precio-input {
+	position: relative;
+}
+
+.precio-input span.price {
+	font-size: 18px;
+	position: absolute;
+	left: 0;
+	top: 19px;
+}
+.precio-input input {
+	text-indent: 25px;
+}
 </style>

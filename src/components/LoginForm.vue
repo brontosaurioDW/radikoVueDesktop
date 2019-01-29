@@ -1,26 +1,30 @@
 <template>
-	<!-- <div class="error">Error de login: {{ errorMsj }}</div>		 -->
-	<form class="LoginForm form" @submit.prevent="attemptLogin(usuario)">
-
-		<div class="form-row">
-			<div class="wrap-input">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email" v-model="usuario.email" class="input" v-validate="'required|email'">
-			</div>
-			<div class="error" v-show="errors.has('email')">{{ errors.first('email') }}</div>
-		</div>
-		<div class="form-row">
-			<div class="wrap-input">
-				<label for="password">Password</label>
-				<input type="password" name="password" id="password" v-model="usuario.password" class="input" v-validate="'required'">
-			</div>
-			<div class="error" v-show="errors.has('password')">{{ errors.first('password') }}</div>
-		</div>
-		<button class="FormLogin-submit btn btn-primary btn-lg">Ingresar</button>
+	<div>
 		
+		<div v-if="hasError" class="error">{{ errorMsj }}</div>
+
+		<form class="LoginForm form" @submit.prevent="attemptLogin(usuario)">
+
+			<div class="form-row">
+				<div class="wrap-input">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" v-model="usuario.email" class="input" v-validate="'required|email'">
+				</div>
+				<div class="error" v-show="errors.has('email')">{{ errors.first('email') }}</div>
+			</div>
+			<div class="form-row">
+				<div class="wrap-input">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" v-model="usuario.password" class="input" v-validate="'required'">
+				</div>
+				<div class="error" v-show="errors.has('password')">{{ errors.first('password') }}</div>
+			</div>
+			<button class="FormLogin-submit btn btn-primary btn-lg">Ingresar</button>
+		</form>
+
 		<p class="RegistroLink">No tenés una cuenta? <router-link to="/register" class="link">Registrate</router-link></p>
 
-	</form>
+	</div>
 
 </template>
 
@@ -51,12 +55,14 @@
 					email: null,
 					password: null,
 				},
+				hasError: false,
+				errorMsj: null
 			};
 		},
 
 		computed: {
 			errors() {
-				return this.$store.session.status.message
+				// return this.$store.session.status.message
 			}
 		},
 
@@ -68,7 +74,10 @@
 					password: this.usuario.password
 				}).then(() => {
 					this.$router.push('/');
-				}).catch(() => console.log("Error"));
+				}).catch(() => {
+					this.hasError = true
+					this.errorMsj = 'Email y/o password incorrectos'
+				});
 			} 
 		}
 	}
