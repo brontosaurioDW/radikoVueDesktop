@@ -5,12 +5,14 @@
 				[No tienes ningún mensaje todavía]
 			</p>
 			<ul> 
-				<li v-for="m in mensajes" :key="m.id">
-					<div>
-						<span>{{m.nombre}}</span>
+				<li v-for="m in mensajes" :key="m.id">	
+					<div class="mensaje-wrapper">
+						<div class="mensaje-texto">
+							<span>{{m.nombre}}</span>
 							<span>{{m.mensaje}}</span>
-					</div>	
-					<span class="mensaje-hora">{{m.time}}</span>
+						</div>	
+						<span class="mensaje-hora">{{m.time}}</span>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -115,29 +117,63 @@
 <style>
 	#mensajes{
 		max-height: 50vh;
+		padding: 20px;
 		overflow: auto;
-		padding: 15px;
+	}
+	#mensajes ul {
+		padding: 0 10px;
 	}
 	#mensajes li{
-		display: inline-block;
+		margin-bottom: 15px;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;	
+	}	
+	#mensajes li .mensaje-wrapper {
 		width: 70%;
-		margin-bottom: 5px;	
+	}
+	#mensajes li .mensaje-texto {
 		color: white;
+		padding: 25px;
+		position: relative;
 	}	
 	#mensajes li:nth-child(even){
-		float: right;
-		text-align: right;
+		justify-content: flex-end;
 	}
-	#mensajes li:nth-child(even) div{
-		padding: 15px;
-		background-color: #65bc9c;
+	#mensajes li:nth-child(even) .mensaje-texto {
+		background-color: #65bc9c;		
 	}
-	#mensajes li:nth-child(odd) div{
-		padding: 15px;
-		background-color: #7065ab;
+	#mensajes li:nth-child(even) .mensaje-texto:after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-left: 10px solid #65bc9c;	
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		position: absolute;
+		top: 30px;
+		right: -10px;
+	}
+	#mensajes li:nth-child(odd) .mensaje-texto {
+		background-color: #ededed;
+		color: #656464;
 	}	
+	#mensajes li:nth-child(odd) .mensaje-texto:before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-right: 10px solid #ededed;
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		position: absolute;
+		top: 30px;
+		left: -10px;
+	}
 	#mensajes span{
 		display: block;
+		font-size: 14px;
 	}
 	#mensajes span:nth-child(1){
 		margin-bottom: 10px;
@@ -145,7 +181,7 @@
 		text-transform: uppercase;
 	}
 	#mensajes .mensaje-hora{
-		margin-top: 2px;
+		margin-top: 10px;
 		font-size: 10px;
 		color: #696969;
 	}

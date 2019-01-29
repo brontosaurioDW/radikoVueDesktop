@@ -1,25 +1,24 @@
 <template>
 	<div class="flex flex-top">
-		<div class="col-8">
-			<h2>Chat <span id="span-cliente"></span></h2>
-			<component v-bind:is="vistaActual" />
-
-		</div>
-
 		<div class="col-4">
-
 			<h2>Clientes</h2>				
 			<div id="clientes" class="simple-box">
-				<ul v-for="cliente in clientes" :cliente="cliente">
-					<li v-on:click="CargarChatMensaje(componente, cliente)" id="li-cliente">
-						<div class="chat-user-photo">
-							<img src="../assets/img/user-default.png" alt="Foto usuario" />
-						</div>
-						<div class="chat-user-data">
-							<span>{{ cliente.nombre}} {{ cliente.apellido}}
-							</span>
-							<span>#{{ cliente.id_usuario}} es el id del usuario
-							</span>
+				<ul>
+					<li v-bind:class="{ active: isActive }" 
+						v-on:click="CargarChatMensaje(componente, cliente)" 
+						v-for="cliente in clientes" 
+						:cliente="cliente.id_usuario" 
+						:id="cliente.nombre" 
+						class="listado-clientes">
+
+						<div class="flex">
+							<div class="chat-user-photo">
+								<img src="../assets/img/user-default.png" alt="Foto usuario" />
+							</div>
+							<div class="chat-user-data">
+								<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
+								<span>#{{ cliente.id_usuario}} es el id del usuario</span>
+							</div>
 						</div>
 						<div class="chat-hora">
 							<span>10:06</span>
@@ -27,6 +26,11 @@
 					</li>
 				</ul>
 			</div>
+		</div>
+
+		<div class="col-8">			
+			<h2>Chat <span id="span-cliente"></span></h2>
+			<component v-bind:is="vistaActual" />			
 		</div>
 	</div>
 </template>
@@ -55,19 +59,22 @@
 		
 		data() {
             return {
+            	isActive: false,
                 componente: 'ChatMensaje',
                 vistaActual: 'ChatMensajeVacio'
             }
         },
 
 		methods:{
-			CargarChatMensaje(vista, cliente) {
+			CargarChatMensaje(vista, cliente) {                
                 this.vistaActual = vista;
+
 				console.log('Tomo cliente:' + cliente.nombre);
+
 				let spanCliente = document.getElementById('span-cliente');
 				spanCliente.innerHTML = 'con ' + cliente.nombre;
-				let itemCliente = document.getElementById('li-cliente');
-				itemCliente.classList.add("li-cliente-seleccionado");
+
+				this.isActive = !this.isActive;
             }
 		}
 	}
@@ -90,6 +97,7 @@
 	}
 	.chat-user-photo img{
 		max-width: 36px;
+		margin-right: 10px;
 	}
 	.chat-user-data{
 		width: 265px;
