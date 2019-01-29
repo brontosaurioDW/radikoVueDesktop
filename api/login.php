@@ -23,14 +23,14 @@ $stmt->execute([
 if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 	$token = generateToken($fila['id_usuario']);
 
-	setcookie('token', $token, time() + 3600, "", "", false, true);
-
 	echo json_encode([
-		'status' => 1,
-		'message' => 'Sesión iniciada.',
-		'data' => [
-			'nombre' => $fila['nombre'],
-			'email' => $fila['email'],
+		'status' 	=> 1,
+		'message'	=> 'Sesión iniciada.',
+		'data' 		=> [
+			'nombre' 	 => $fila['nombre'],
+			'email' 	 => $fila['email'],
+			'id_usuario' => $fila['id_usuario'],
+			'token' 	 => '' . $token
 		]
 	]);
 } else {

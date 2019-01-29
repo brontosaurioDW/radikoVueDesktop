@@ -5,6 +5,14 @@ let apiRoute = 'http://localhost/radikoVueDesktop/api/';
 
 Vue.use(Vuex);
 
+// Seteamos la variable auth en null si no hay un local storage guardado
+var authFlag = false;
+if(localStorage.getItem('usuario_logueado')) {
+	authFlag = true;
+} else {
+	authFlag = false;
+}
+
 export default new Vuex.Store({
 	state: {
 		layout: 'login-layout',
@@ -26,10 +34,12 @@ export default new Vuex.Store({
 		unidades: [],
 		clientes: [],
 		session: {
-			auth: false,
+			auth: authFlag,
 			user: {
+				id_usuario: null,
 				nombre: null,
-				email: null
+				email: null,
+				token: null
 			},
 			status: {
 				message: null
@@ -63,13 +73,21 @@ export default new Vuex.Store({
 		setClientes(state, newCliente) {
 			state.clientes = newCliente
 		},
-		setSessionAuth(state, userData) {
-			state.session.auth = true;
+		setSessionAuth(state, userData) {			
 			state.session.user.nombre = userData.nombre;
 			state.session.user.email = userData.email;
+			state.session.user.id_usuario = userData.id_usuario;
+			state.session.user.token = userData.token;
+			localStorage.setItem('usuario_logueado', JSON.stringify(state.session.user.token));
+
+			if (localStorage.getItem('usuario_logueado')) {
+				state.session.auth = true;
+			}			
 		},
 		setSessionLogout(state) {
-			state.session.auth = false;
+			if (localStorage.getItem('usuario_logueado') == 'NULL') {
+				state.session.auth = false;
+			}	
 		}
 	},
 
@@ -126,15 +144,17 @@ export default new Vuex.Store({
 		login(context, userData) {
 			return new Promise((resolve, reject) => {
 				fetch(apiRoute + 'login.php', {
-					method: 'post',
+					method: 'POST',
 					body: JSON.stringify(userData)
 				})
 				.then(response => response.json())
 				.then(data => {
 					if(data.status == 1) {
 						context.commit('setSessionAuth', {
-							nombre: data.data.nombre,
-							email: data.data.email
+							nombre		: data.data.nombre,
+							email		: data.data.email,
+							id_usuario	: data.data.id_usuario,
+							token		: data.data.token
 						})
 						resolve();
 					} else {
@@ -207,6 +227,7 @@ export default new Vuex.Store({
 		},
 
 		logout(context) {
+			localStorage.removeItem('usuario_logueado');
 			context.commit('setSessionLogout');
 		}
 	}

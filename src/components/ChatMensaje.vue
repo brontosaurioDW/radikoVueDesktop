@@ -92,7 +92,6 @@
 		methods:{
 			//guardamos
 			guardarMensaje(){
-				console.log(this.newMensaje);
 				/*refMensajes.push(this.newMensaje);
 				//limpiamos
 				this.newMensaje.mensaje = '';*/

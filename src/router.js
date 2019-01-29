@@ -11,6 +11,8 @@ import ChatPage from './views/Chat.vue';
 
 import store from './store';
 
+console.log('El estado de la session es: ' + store.state.session.auth + ". --> Estoy refrescando la página.");
+
 Vue.use(Router)
 
 const router = new Router({
@@ -81,11 +83,13 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
 
-    if (to.matched.some(routeData => routeData.meta.requiresAuth)) {
-        if (!store.state.session.auth) {
-            next('/login');
-        } else {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.state.session.auth == true) {
             next();
+            console.log('El estado de la session es: ' + store.state.session.auth + ". --> Deberia ser TRUE");
+        } else {
+            next('/login');
+            console.log('El estado de la session es: ' + store.state.session.auth + ". --> Deberia ser FALSE");
         }
     } else {
         next();
@@ -98,9 +102,6 @@ router.beforeEach((to, from, next) => {
         if (nearestWithTitle) {
             document.title = nearestWithTitle.meta.title;
         }
-
-        Array.from(document.querySelectorAll('[data-vue-router-controlled]')).map(el => el.parentNode.removeChild(el));
-
         next();
     } else {
         next();

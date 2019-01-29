@@ -52,8 +52,8 @@
 		data() {
 			return {
 				usuario: {
-					email: null,
-					password: null,
+					email 		: null,
+					password 	: null
 				},
 				hasError: false,
 				errorMsj: null
@@ -70,8 +70,8 @@
 			attemptLogin() {
 				this.$validator.validate()
 				this.$store.dispatch('login', {
-					email: this.usuario.email,
-					password: this.usuario.password
+					email 		: this.usuario.email,
+					password  	: this.usuario.password
 				}).then(() => {
 					this.$router.push('/');
 				}).catch(() => {
