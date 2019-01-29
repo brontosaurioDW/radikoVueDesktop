@@ -85,7 +85,7 @@ export default new Vuex.Store({
 			}			
 		},
 		setSessionLogout(state) {
-			if (localStorage.getItem('usuario_logueado') == 'NULL') {
+			if (!localStorage.getItem('usuario_logueado')) {
 				state.session.auth = false;
 			}	
 		}

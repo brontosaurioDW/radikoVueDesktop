@@ -11,8 +11,6 @@ import ChatPage from './views/Chat.vue';
 
 import store from './store';
 
-console.log('El estado de la session es: ' + store.state.session.auth + ". --> Estoy refrescando la página.");
-
 Vue.use(Router)
 
 const router = new Router({
@@ -86,26 +84,19 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (store.state.session.auth == true) {
             next();
-            console.log('El estado de la session es: ' + store.state.session.auth + ". --> Deberia ser TRUE");
         } else {
-            next('/login');
-            console.log('El estado de la session es: ' + store.state.session.auth + ". --> Deberia ser FALSE");
+            next({
+                path: '/login',
+                replace: true
+            })
         }
     } else {
         next();
     }
 
-    // DOC: https://alligator.io/vuejs/vue-router-modify-head/
-    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
-
-    if (nearestWithTitle) {
-        if (nearestWithTitle) {
-            document.title = nearestWithTitle.meta.title;
-        }
-        next();
-    } else {
-        next();
-    }
+    Vue.nextTick(() => {
+        document.title = to.meta.title ? to.meta.title : 'Radiko';
+    });
 });
 
 export default router;

@@ -25,13 +25,13 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#">
+					<a href="#" class="disabled">
 						<i class="icon icon-cart"></i>
 						<span>Mis pedidos</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="#" class="disabled">
 						<i class="icon icon-user"></i>
 						<span>Mis datos</span>
 					</a>
@@ -67,6 +67,7 @@
 		methods: {
 			logout() {
 				this.$store.dispatch('logout')
+				
 				this.$router.push('/login')
 			}
 		}

@@ -627,6 +627,16 @@ h1 a {
     border-bottom: 1px solid #424242;
 }
 
+.menu li a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    background: #353535;
+}
+
+.menu li a.disabled span {
+    text-decoration: line-through;
+}
+
 .menu li:first-child {
     border-top: 1px solid #424242;
 }
