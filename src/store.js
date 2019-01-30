@@ -78,8 +78,8 @@ export default new Vuex.Store({
 			state.session.user.email = userData.email;
 			state.session.user.id_usuario = userData.id_usuario;
 			state.session.user.token = userData.token;
-			localStorage.setItem('usuario_logueado_token', state.session.user.token);
-			localStorage.setItem('usuario_logueado_nombre', state.session.user.nombre);
+			localStorage.setItem('usuario_logueado_token', userData.token);
+			localStorage.setItem('usuario_logueado_nombre', userData.nombre);
 
 			if (localStorage.getItem('usuario_logueado_token')) {
 				state.session.auth = true;
