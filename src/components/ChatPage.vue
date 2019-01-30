@@ -1,6 +1,6 @@
 <template>
-	<div class="flex flex-top">
-		<div class="col-4">
+	<div class="flex flex-top noflexm">
+		<div class="col-4 colm-12">
 			<h2>Clientes</h2>				
 			<div id="clientes" class="simple-box">
 				<ul>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 
-		<div class="col-8">			
+		<div class="col-8 colm-12">			
 			<h2>Chat <span id="span-cliente"></span></h2>
 			<!-- keep-alive: la instancia del componente se almacena en caché una vez que se crea por primera vez --> 
 			<keep-alive>

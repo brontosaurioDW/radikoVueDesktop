@@ -32,7 +32,7 @@
 				</div>
 			
 				<div class="text-right">
-					<button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+					<button type="submit" class="btn btn-terciary">Enviar</button>
 				</div>
 			</div>
 		</form>	
@@ -158,6 +158,11 @@
 		color: white;
 		background-color: #65bc9c;		
 	}
+
+	.mensaje-usuario-logueado .mensaje-texto:before {
+		content: none;
+	}
+
 	.mensaje-usuario-logueado .mensaje-texto:after {
 		content: '';
 		display: block;
@@ -184,6 +189,29 @@
 		font-size: 10px;
 		color: #696969;
 	}
+
+	#chat .wrap-input{
+		padding: 0;
+	    background: none;
+    	border: none;
+	}
+
+	#chat #mensaje {
+		height: 120px;
+		padding: 15px;
+    	font-size: 14px;
+		background: #fff;
+		resize: none;
+	}
+
+	#chat label {
+	    font-size: 18px;
+    	color: #4b4b4b;
+    	text-transform: uppercase;
+    	font-family: "Gobold", sans-serif;
+    	margin-bottom: 10px;
+	}
+
 	.gris{
 		background-color: grey;
 	}

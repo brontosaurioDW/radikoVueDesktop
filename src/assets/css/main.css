@@ -899,4 +899,14 @@ h1 a {
 .disclaimer li > span {
 }
 
+@media only screen and (max-width: 768px) {
+    
+    .noflexm {
+        display: block!important;
+    }
+    .colm-12 {
+       width: 100%!important;
+    }
+}
+
 /*# sourceMappingURL=css/main.css.map */
