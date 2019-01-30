@@ -5,10 +5,10 @@
 				[No tienes ningún mensaje todavía]
 			</p>
 			<ul> 
-				<li v-for="m in mensajes" :key="m.id">	
+				<li v-for="m in mensajes" :key="m.id" :class="{'mensaje-usuario-logueado' : usuarioLogueado==m.autor}">	
 					<div class="mensaje-wrapper">
 						<div class="mensaje-texto">
-							<span>{{m.nombre}}</span>
+							<span>{{m.autor}}</span>
 							<span>{{m.mensaje}}</span>
 						</div>	
 						<span class="mensaje-hora">{{m.time}}</span>
@@ -70,13 +70,13 @@
 		data(){
 			return{
 				newMensaje: {
-					//nombre: localStorage.getItem('usuario_logueado_nombre'),
-					nombre: '',
+					autor: '',
 					mensaje:'',
 					time:'' /* la obtenemos del this.hoy */
 				},
 				hoy : null,
-				feedback: null
+				feedback: null,
+				usuarioLogueado: localStorage.getItem('usuario_logueado_nombre')
 			}		
 		},
 		
@@ -97,9 +97,10 @@
 				/*refMensajes.push(this.newMensaje);
 				//limpiamos
 				this.newMensaje.mensaje = '';*/
+				console.log(this.usuarioLogueado);
 				if(this.newMensaje.mensaje){
 					refMensajes.push({
-						nombre: localStorage.getItem('usuario_logueado_nombre'),
+						autor: this.usuarioLogueado,
 						mensaje: mensaje.value,
 						time: this.newMensaje.time
 					}).then(function(){
@@ -132,34 +133,13 @@
 	#mensajes li .mensaje-wrapper {
 		width: 70%;
 	}
-	#mensajes li .mensaje-texto {
-		color: white;
+	.mensaje-texto {
 		padding: 25px;
 		position: relative;
-	}	
-	#mensajes li:nth-child(even){
-		justify-content: flex-end;
-	}
-	#mensajes li:nth-child(even) .mensaje-texto {
-		background-color: #65bc9c;		
-	}
-	#mensajes li:nth-child(even) .mensaje-texto:after {
-		content: '';
-		display: block;
-		width: 0;
-		height: 0;
-		border-left: 10px solid #65bc9c;	
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-		position: absolute;
-		top: 30px;
-		right: -10px;
-	}
-	#mensajes li:nth-child(odd) .mensaje-texto {
 		background-color: #ededed;
 		color: #656464;
 	}	
-	#mensajes li:nth-child(odd) .mensaje-texto:before {
+	.mensaje-texto:before {
 		content: '';
 		display: block;
 		width: 0;
@@ -170,6 +150,25 @@
 		position: absolute;
 		top: 30px;
 		left: -10px;
+	}
+	.mensaje-usuario-logueado{
+		justify-content: flex-end;
+	}
+	.mensaje-usuario-logueado .mensaje-texto {
+		color: white;
+		background-color: #65bc9c;		
+	}
+	.mensaje-usuario-logueado .mensaje-texto:after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-left: 10px solid #65bc9c;	
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		position: absolute;
+		top: 30px;
+		right: -10px;
 	}
 	#mensajes span{
 		display: block;
@@ -184,5 +183,11 @@
 		margin-top: 10px;
 		font-size: 10px;
 		color: #696969;
+	}
+	.gris{
+		background-color: grey;
+	}
+	.rojo{
+		background-color: red;
 	}
 </style>
