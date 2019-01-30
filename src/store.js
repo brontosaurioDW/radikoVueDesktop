@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 // Seteamos la variable auth en null si no hay un local storage guardado
 var authFlag = false;
-if(localStorage.getItem('usuario_logueado')) {
+if(localStorage.getItem('usuario_logueado_token')) {
 	authFlag = true;
 } else {
 	authFlag = false;
@@ -78,14 +78,15 @@ export default new Vuex.Store({
 			state.session.user.email = userData.email;
 			state.session.user.id_usuario = userData.id_usuario;
 			state.session.user.token = userData.token;
-			localStorage.setItem('usuario_logueado', JSON.stringify(state.session.user.token));
+			localStorage.setItem('usuario_logueado_token', state.session.user.token);
+			localStorage.setItem('usuario_logueado_nombre', state.session.user.nombre);
 
-			if (localStorage.getItem('usuario_logueado')) {
+			if (localStorage.getItem('usuario_logueado_token')) {
 				state.session.auth = true;
 			}			
 		},
 		setSessionLogout(state) {
-			if (!localStorage.getItem('usuario_logueado')) {
+			if (!localStorage.getItem('usuario_logueado_token')) {
 				state.session.auth = false;
 			}	
 		}
@@ -227,7 +228,8 @@ export default new Vuex.Store({
 		},
 
 		logout(context) {
-			localStorage.removeItem('usuario_logueado');
+			localStorage.removeItem('usuario_logueado_token');
+			localStorage.removeItem('usuario_logueado_nombre');
 			context.commit('setSessionLogout');
 		}
 	}

@@ -70,7 +70,7 @@
 		data(){
 			return{
 				newMensaje: {
-					//nombre: this.$store.state.session.user.nombre,
+					//nombre: localStorage.getItem('usuario_logueado_nombre'),
 					nombre: '',
 					mensaje:'',
 					time:'' /* la obtenemos del this.hoy */
@@ -99,7 +99,7 @@
 				this.newMensaje.mensaje = '';*/
 				if(this.newMensaje.mensaje){
 					refMensajes.push({
-						nombre: this.$store.state.session.user.nombre,
+						nombre: localStorage.getItem('usuario_logueado_nombre'),
 						mensaje: mensaje.value,
 						time: this.newMensaje.time
 					}).then(function(){

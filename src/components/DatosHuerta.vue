@@ -18,7 +18,7 @@ v<template>
 
 		data() {
 			return {
-				nombre: this.$store.state.session.user.nombre
+				nombre: localStorage.getItem('usuario_logueado_nombre')
 			}
 		},
 
@@ -28,7 +28,7 @@ v<template>
 			},
 
 			usuario() {
-				return this.$store.state.session.user.nombre
+				return localStorage.getItem('usuario_logueado_nombre')
 			}
 		},
 
