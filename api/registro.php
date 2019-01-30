@@ -1,19 +1,14 @@
-<?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-
-$db = new PDO('mysql:host=localhost:3306;dbname=dw6_radiko;charset=utf8', 'root', '');
+<?php require_once 'conexion.php';
 
 $buffer = file_get_contents('php://input');
-
 $postData = json_decode($buffer, true);
 
 $query = "INSERT INTO
-		usuarios
-	SET
-		nombre = :nombre,
-		email = :email,
-		password = :password";
+usuarios
+SET
+nombre = :nombre,
+email = :email,
+password = :password";
 
 $stmt = $db->prepare($query);
 
@@ -28,8 +23,8 @@ if($exito) {
 	$salida = [
 		'status' => 1,
 		'data' => [
-		'id_usuario' => $db->lastInsertId(),
-		'nombre' => $postData['nombre']
+			'id_usuario' => $db->lastInsertId(),
+			'nombre' => $postData['nombre']
 		]
 	];
 } else {

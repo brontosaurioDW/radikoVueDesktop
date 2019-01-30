@@ -1,30 +1,25 @@
-<?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-
-$db = new PDO('mysql:host=localhost:3306;dbname=dw6_radiko;charset=utf8', 'root', '');
+<?php require_once 'conexion.php';
 
 $buffer = file_get_contents('php://input');
-
 $postData = json_decode($buffer, true);
 
 $query = "UPDATE 
-	productos 
+productos 
 SET
-	producto = :producto,
-	descripcion = :descripcion,
-	marca = :marca,
-	precio = :precio,
-	stock = :stock,
-	activo = :activo,
-	stock = :stock,
-	fecha_alta = NOW(),
-	fecha_baja = NULL,
-	CATEGORIAS_id_categoria = :categoria,
-	UNIDADES_DE_MEDIDA_id_unidad_medida = :unidad,
-	HUERTAS_id_huerta = 1
+producto = :producto,
+descripcion = :descripcion,
+marca = :marca,
+precio = :precio,
+stock = :stock,
+activo = :activo,
+stock = :stock,
+fecha_alta = NOW(),
+fecha_baja = NULL,
+CATEGORIAS_id_categoria = :categoria,
+UNIDADES_DE_MEDIDA_id_unidad_medida = :unidad,
+HUERTAS_id_huerta = 1
 WHERE
-	id_producto = :id_producto";
+id_producto = :id_producto";
 
 $stmt = $db->prepare($query);
 
@@ -39,8 +34,6 @@ $exito = $stmt->execute([
 	'unidad' => $postData['id_unidad'],
 	'id_producto' => $postData['id_producto']
 ]);
-
-// print_r($stmt->errorInfo());
 
 if($exito) {
 	$salida = [

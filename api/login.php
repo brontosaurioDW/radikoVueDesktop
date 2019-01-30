@@ -1,17 +1,12 @@
-<?php
+<?php require_once 'conexion.php';
 require 'token-functions.php';
-
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-
-$db = new PDO('mysql:host=localhost:3306;dbname=dw6_radiko;charset=utf8', 'root', '');
 
 $input = file_get_contents('php://input');
 $postData = json_decode($input, true);
 
 $query = "SELECT * FROM usuarios
-		WHERE email = :email
-		AND password = :password";
+WHERE email = :email
+AND password = :password";
 
 $stmt = $db->prepare($query);
 

@@ -1,29 +1,20 @@
-<?php
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-
-$db = new PDO('mysql:host=localhost:3306;dbname=dw6_radiko;charset=utf8', 'root', '');
+<?php require_once 'conexion.php';
 
 $buffer = file_get_contents('php://input');
-
 $postData = json_decode($buffer, true);
 
-//print_r($postData);
-
 $query = "UPDATE 
-						productos 
-					SET
-						activo = '0'
-					WHERE
-						id_producto = :id_producto";
+productos 
+SET
+activo = '0'
+WHERE
+id_producto = :id_producto";
 
 $stmt = $db->prepare($query);
 
 $exito = $stmt->execute([
 	'id_producto' => $postData['id_producto']
 ]);
-
-// print_r($stmt->errorInfo());
 
 if($exito) {
 	$salida = [
