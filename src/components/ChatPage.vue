@@ -30,7 +30,10 @@
 
 		<div class="col-8">			
 			<h2>Chat <span id="span-cliente"></span></h2>
-			<component v-bind:is="vistaActual" />			
+			<!-- keep-alive: la instancia del componente se almacena en caché una vez que se crea por primera vez --> 
+			<keep-alive>
+				<component v-bind:is="vistaActual" />
+			</keep-alive>			
 		</div>
 	</div>
 </template>
