@@ -6,11 +6,20 @@ let apiRoute = 'http://localhost/radikoVueDesktop/api/';
 Vue.use(Vuex);
 
 // Seteamos la variable auth en null si no hay un local storage guardado
-var authFlag = false;
+var authFlag 	= false;
+var statusFlag 	= null;
+
 if(localStorage.getItem('usuario_logueado_token')) {
 	authFlag = true;
+
+	if(localStorage.getItem('usuario_logueado_tipo') != 'cliente') {
+		statusFlag = true;
+	} else {
+		statusFlag = false;
+	}
 } else {
 	authFlag = false;
+	statusFlag 	= null;
 }
 
 export default new Vuex.Store({
@@ -33,8 +42,10 @@ export default new Vuex.Store({
 		categorias: [],
 		unidades: [],
 		clientes: [],
+		huertas: [],
 		session: {
 			auth: authFlag,
+			logueado: statusFlag,
 			user: {
 				id_usuario: null,
 				nombre: null,
@@ -73,17 +84,30 @@ export default new Vuex.Store({
 		setClientes(state, newCliente) {
 			state.clientes = newCliente
 		},
+		setHuertas(state, newHuerta) {
+			state.huertas = newHuerta
+		},
 		setSessionAuth(state, userData) {			
 			state.session.user.nombre = userData.nombre;
 			state.session.user.email = userData.email;
 			state.session.user.id_usuario = userData.id_usuario;
 			state.session.user.token = userData.token;
+			state.session.user.tipo_de_usuario = userData.tipo_de_usuario;
+
 			localStorage.setItem('usuario_logueado_token', userData.token);
 			localStorage.setItem('usuario_logueado_nombre', userData.nombre);
+			localStorage.setItem('usuario_logueado_tipo', userData.tipo_de_usuario);
+			localStorage.setItem('usuario_logueado_id', userData.id_usuario);
 
 			if (localStorage.getItem('usuario_logueado_token')) {
 				state.session.auth = true;
-			}			
+			}	
+
+			if (localStorage.getItem('usuario_logueado_tipo') != 'cliente') {
+				state.session.logueado = true;
+			} else {
+			    state.session.logueado = false;
+			}		
 		},
 		setSessionLogout(state) {
 			if (!localStorage.getItem('usuario_logueado_token')) {
@@ -127,10 +151,18 @@ export default new Vuex.Store({
 		},
 		
 		loadClientes(context) {
-			fetch(apiRoute + 'clientes.php?id=1')
+			fetch(apiRoute + 'clientes.php?id=' + localStorage.getItem('usuario_logueado_id'))
 			.then(respuesta => respuesta.json())
 			.then(data => {
 				context.commit('setClientes', data);
+			});	
+		},
+
+		loadHuertas(context) {
+			fetch(apiRoute + 'huertas.php?id=' + localStorage.getItem('usuario_logueado_id'))
+			.then(respuesta => respuesta.json())
+			.then(data => {
+				context.commit('setHuertas', data);
 			});	
 		},
 
@@ -155,7 +187,8 @@ export default new Vuex.Store({
 							nombre		: data.data.nombre,
 							email		: data.data.email,
 							id_usuario	: data.data.id_usuario,
-							token		: data.data.token
+							token		: data.data.token,
+							tipo_de_usuario	: data.data.tipo_de_usuario
 						})
 						resolve();
 					} else {
@@ -230,6 +263,9 @@ export default new Vuex.Store({
 		logout(context) {
 			localStorage.removeItem('usuario_logueado_token');
 			localStorage.removeItem('usuario_logueado_nombre');
+			localStorage.removeItem('usuario_logueado_tipo');
+			localStorage.removeItem('usuario_logueado_id');
+
 			context.commit('setSessionLogout');
 		}
 	}

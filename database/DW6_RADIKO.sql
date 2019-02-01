@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `DW6_RADIKO`.`USUARIOS` (
   `foto` VARCHAR(255) NULL,
   `fecha_alta` DATETIME NOT NULL,
   `estado` ENUM('activo','suspendido','dado de baja','pendiente de pago') NOT NULL,
+  `tipo_de_usuario` ENUM('admin','cliente','huerta') NOT NULL,
   `activo` TINYINT(1) NOT NULL DEFAULT 1,
   UNIQUE INDEX `Email_UNIQUE` (`email` ASC),
   PRIMARY KEY (`id_usuario`))
@@ -437,18 +438,18 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `DW6_RADIKO`;
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (1, 'Laura', 'Mitono', 'lau@mail.com', MD5(123), '15-3039-8007', NULL, '2018-06-01 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (2, 'Florencia', 'Ederli', 'fespi@mail.com', MD5(123), '', NULL, '2018-06-01 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (3, 'Florencia', 'Sepúlveda', 'flor@mail.com', MD5(123), '2365-4578', NULL, '2018-06-01 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (4, 'Emiliano', 'Hotes', 'emi@mail.com', MD5(123), '23544568', 'emi.jpg', '2018-06-01 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (5, 'Germán', 'Rodríguez', 'ger@mail.com', MD5(123), '15-8475-3654', NULL, '2018-07-05 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (6, 'Federico', 'Noto', 'fede@mail.com', MD5(123), '', 'fede.jpg', '2018-07-20 12:10:00', 'suspendido', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (7, 'Santiago', 'Gallino', 'santi@mail.com', MD5(123), '25484569', NULL, '2018-08-10 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (8, 'Mabel', 'García', 'mabe@mail.com', MD5(123), '15-2136-5478', NULL, '2018-08-12 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (9, 'Carlos', 'Gomez', 'info@jardinorganico.com.ar', MD5(123), '11 4568-1223', 'carlos.jpg', '2018-07-15 12:10:00', 'activo', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (10, 'Pedro', 'Martinez', 'hola@huertaorganica.com.ar', MD5(123), '11-6547-8542', 'pedro.png', '2018-07-12 12:10:00', 'suspendido', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (11, 'Oscar', 'Lopez', 'huerta@talloverde.com', MD5(123), '0-800-88-82556', 'oscar.png', '2018-08-05 12:10:00', 'pendiente de pago', 1);
-INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `activo`) VALUES (12, 'Mariano', 'Pedraza', 'info@estilorganico.com', MD5(123), '15-2839-83358', 'mariano.jpg', '2018-08-22 12:10:00', 'dado de baja', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (1, 'Laura', 'Mitono', 'lau@mail.com', MD5(123), '15-3039-8007', NULL, '2018-06-01 12:10:00', 'activo', 'admin', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (2, 'Florencia', 'Ederli', 'fespi@mail.com', MD5(123), '', NULL, '2018-06-01 12:10:00', 'activo', 'admin', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (3, 'Florencia', 'Sepúlveda', 'flor@mail.com', MD5(123), '2365-4578', NULL, '2018-06-01 12:10:00', 'activo', 'admin', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (4, 'Emiliano', 'Hotes', 'emi@mail.com', MD5(123), '23544568', 'emi.jpg', '2018-06-01 12:10:00', 'activo', 'admin', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (5, 'Germán', 'Rodríguez', 'ger@mail.com', MD5(123), '15-8475-3654', NULL, '2018-07-05 12:10:00', 'activo', 'cliente', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (6, 'Federico', 'Noto', 'fede@mail.com', MD5(123), '', 'fede.jpg', '2018-07-20 12:10:00', 'suspendido', 'cliente', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (7, 'Santiago', 'Gallino', 'santi@mail.com', MD5(123), '25484569', NULL, '2018-08-10 12:10:00', 'activo', 'cliente', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (8, 'Mabel', 'García', 'mabe@mail.com', MD5(123), '15-2136-5478', NULL, '2018-08-12 12:10:00', 'activo', 'cliente', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (9, 'Carlos', 'Gomez', 'info@jardinorganico.com.ar', MD5(123), '11 4568-1223', 'carlos.jpg', '2018-07-15 12:10:00', 'activo', 'huerta', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (10, 'Pedro', 'Martinez', 'hola@huertaorganica.com.ar', MD5(123), '11-6547-8542', 'pedro.png', '2018-07-12 12:10:00', 'suspendido', 'huerta', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (11, 'Oscar', 'Lopez', 'huerta@talloverde.com', MD5(123), '0-800-88-82556', 'oscar.png', '2018-08-05 12:10:00', 'pendiente de pago', 'huerta', 1);
+INSERT INTO `DW6_RADIKO`.`USUARIOS` (`id_usuario`, `nombre`, `apellido`, `email`, `password`, `telefono`, `foto`, `fecha_alta`, `estado`, `tipo_de_usuario`, `activo`) VALUES (12, 'Mariano', 'Pedraza', 'info@estilorganico.com', MD5(123), '15-2839-83358', 'mariano.jpg', '2018-08-22 12:10:00', 'dado de baja', 'huerta', 1);
 
 COMMIT;
 

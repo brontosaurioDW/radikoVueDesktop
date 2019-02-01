@@ -10,7 +10,7 @@
 
 		<nav class="menu">
 			<ul>
-				<li class="nav-item">
+				<li class="nav-item" v-if="cliente == true">
 					<router-link to="/products" class="nav-link">
 						<i class="icon icon-fruit"></i>
 						<span>Mis productos</span>
@@ -24,7 +24,7 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				<li v-if="cliente == true">
 					<a href="#" class="disabled">
 						<i class="icon icon-cart"></i>
 						<span>Mis pedidos</span>
@@ -62,6 +62,12 @@
 
 		components: {
 			DatosHuerta
+		},
+
+		computed: {	
+			cliente() {
+				return this.$store.state.session.logueado
+			}
 		},
 
 		methods: {

@@ -25,6 +25,7 @@ if($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			'nombre' 	 => $fila['nombre'],
 			'email' 	 => $fila['email'],
 			'id_usuario' => $fila['id_usuario'],
+			'tipo_de_usuario' => $fila['tipo_de_usuario'],
 			'token' 	 => '' . $token
 		]
 	]);

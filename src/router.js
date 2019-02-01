@@ -11,7 +11,7 @@ import ChatPage from './views/Chat.vue';
 
 import store from './store';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
     routes: [{
@@ -20,7 +20,7 @@ const router = new Router({
         component: Home,
         meta: {
             title: 'Radiko - Inicio',
-            requiresAuth: true
+            requiresAuth: true,
         }
     }, {
         path: '/login',
@@ -74,7 +74,7 @@ const router = new Router({
         component: ChatPage,
         meta: {
             title: 'Radiko - Chat',
-            requiresAuth: true
+            requiresAuth: true,
         }
     }]
 });
@@ -82,8 +82,18 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
+      
         if (store.state.session.auth == true) {
             next();
+
+            if (store.state.session.logueado == true) {  
+                next();
+            } else {
+                next({
+                    path: '/chat',
+                    replace: true
+                })
+            }
         } else {
             next({
                 path: '/login',

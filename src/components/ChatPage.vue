@@ -1,9 +1,12 @@
 <template>
 	<div class="flex flex-top noflexm">
 		<div class="col-4 colm-12">
-			<h2>Clientes</h2>				
+
+			<h2 v-if="cliente == true">Clientes</h2>				
+			<h2 v-else>Huertas</h2>				
+
 			<div id="clientes" class="simple-box">
-				<ul>
+				<ul v-if="cliente == true">
 					<li v-bind:class="{ active: isActive }" 
 						v-on:click="CargarChatMensaje(componente, cliente)" 
 						v-for="cliente in clientes" 
@@ -25,6 +28,28 @@
 						</div>	
 					</li>
 				</ul>
+
+				<ul v-else>
+					<li v-bind:class="{ active: isActive }" 
+						v-on:click="CargarChatMensaje(componente, huerta)" 
+						v-for="huerta in huertas" 
+						:huerta="huerta.id_huerta" 
+						:id="huerta.nombre_huerta" 
+						class="listado-clientes">
+
+						<div class="flex">
+							<div class="chat-user-photo">
+								<img src="../assets/img/user-default.png" alt="Foto huerta" />
+							</div>
+							<div class="chat-user-data">
+								<span>{{ huerta.nombre_huerta }}</span>
+							</div>
+						</div>
+						<div class="chat-hora">
+							<span>10:06</span>
+						</div>	
+					</li>
+				</ul> 
 			</div>
 		</div>
 
@@ -53,11 +78,18 @@
 		computed: {
 			clientes() {
 				return this.$store.state.clientes;
+			},
+			huertas() {
+				return this.$store.state.huertas;
+			},
+			cliente() {
+				return this.$store.state.session.logueado;
 			}
 		},
 		
 		mounted() {
 			this.$store.dispatch('loadClientes');
+			this.$store.dispatch('loadHuertas');
 		},
 		
 		data() {
