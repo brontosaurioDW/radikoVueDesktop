@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true}">
-			<p v-if="mensajes.lenght==0">
+			<p v-if="!mensajes[0]">
 				[No tienes ningún mensaje todavía]
 			</p>
-			<ul> 
+			<ul v-else> 
 				<li v-for="m in mensajes" :key="m.id" :class="{'mensaje-usuario-logueado' : usuarioLogueado==m.autor}">	
 					<div class="mensaje-wrapper">
 						<div class="mensaje-texto">
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+
 	import Firebase from 'firebase';
 	
 	var config = {
@@ -71,8 +72,8 @@
 			return{
 				newMensaje: {
 					autor: '',
-					mensaje:'',
-					time:'' /* la obtenemos del this.hoy */
+					mensaje: '',
+					time: '' /* la obtenemos del this.hoy */
 				},
 				hoy : null,
 				feedback: null,
@@ -82,12 +83,12 @@
 		
 		//El objeto Vue tendrá una propiedad/variable llamada hoy que al cargarse la aplicación (crearse el objeto Vue) se actualizará con la fecha de hoy. Enero arranca en 0 -modificar-
 		created : function(){
-			this.hoy = Date.now();
+			this.hoy = new Date();
 			this.newMensaje.time = 
-				new Date(this.hoy).getDate()+"-"+
-				new Date(this.hoy).getMonth()+"-"+
-				new Date(this.hoy).getFullYear()+" "+
-				new Date(this.hoy).getHours()+":"+
+				new Date(this.hoy).getDate() + "-" +
+				new Date(this.hoy).getMonth() + "-" +
+				new Date(this.hoy).getFullYear() +" " +
+				new Date(this.hoy).getHours() + ":" +
 				new Date(this.hoy).getMinutes();
 		},
   

@@ -1,64 +1,70 @@
 <template>
-	<div class="flex flex-top noflexm">
-		<div class="col-4 colm-12">
+	<div class="chat-page">
+		<h2 v-if="clienteTipoHuerta == true && !clientes[0] || clienteTipoHuerta == false && !huertas[0]">
+			No hay chats disponibles
+		</h2>
 
-			<h2 v-if="cliente == true">Clientes</h2>				
-			<h2 v-else>Huertas</h2>				
+		<div v-else class="flex flex-top noflexm">
+			<div class="col-4 colm-12">
 
-			<div id="clientes" class="simple-box">
-				<ul v-if="cliente == true">
-					<li v-bind:class="{ active: isActive }" 
-						v-on:click="CargarChatMensaje(componente, cliente)" 
-						v-for="cliente in clientes" 
-						:cliente="cliente.id_usuario" 
-						:id="cliente.nombre" 
-						class="listado-clientes">
+				<h2 v-if="clienteTipoHuerta == true">Clientes</h2>				
+				<h2 v-else="clienteTipoHuerta == false">Huertas</h2>		
 
-						<div class="flex">
-							<div class="chat-user-photo">
-								<img src="../assets/img/user-default.png" alt="Foto usuario" />
+				<div id="clientes" class="simple-box">
+
+					<ul v-if="clienteTipoHuerta == true">
+						<li v-on:click="CargarChatMensaje(componente, cliente)" 
+							v-for="cliente in clientes" 
+							:cliente="cliente.id_usuario" 
+							:id="cliente.nombre" 
+							class="listado-clientes">
+
+							<div class="flex">
+								<div class="chat-user-photo">
+									<img src="../assets/img/user-default.png" alt="Foto usuario" />
+								</div>
+								<div class="chat-user-data">
+									<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
+									<span>#{{ cliente.id_usuario}} es el id del usuario</span>
+								</div>
 							</div>
-							<div class="chat-user-data">
-								<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
-								<span>#{{ cliente.id_usuario}} es el id del usuario</span>
-							</div>
-						</div>
-						<div class="chat-hora">
-							<span>10:06</span>
-						</div>	
-					</li>
-				</ul>
+							<div class="chat-hora">
+								<span>10:06</span>
+							</div>	
+						</li>
+					</ul>
+				
+					<ul v-else-if="clienteTipoHuerta == false">
+						<li v-on:click="CargarChatMensaje(componente, huerta)" 
+							v-for="huerta in huertas" 
+							:huerta="huerta.id_huerta" 
+							:id="huerta.nombre_huerta" 
+							class="listado-clientes">
 
-				<ul v-else>
-					<li v-bind:class="{ active: isActive }" 
-						v-on:click="CargarChatMensaje(componente, huerta)" 
-						v-for="huerta in huertas" 
-						:huerta="huerta.id_huerta" 
-						:id="huerta.nombre_huerta" 
-						class="listado-clientes">
-
-						<div class="flex">
-							<div class="chat-user-photo">
-								<img src="../assets/img/user-default.png" alt="Foto huerta" />
+							<div class="flex">
+								<div class="chat-user-photo">
+									<img src="../assets/img/user-default.png" alt="Foto huerta" />
+								</div>
+								<div class="chat-user-data">
+									<span>{{ huerta.nombre_huerta }}</span>
+								</div>
 							</div>
-							<div class="chat-user-data">
-								<span>{{ huerta.nombre_huerta }}</span>
-							</div>
-						</div>
-						<div class="chat-hora">
-							<span>10:06</span>
-						</div>	
-					</li>
-				</ul> 
+							<div class="chat-hora">
+								<span>10:06</span>
+							</div>	
+						</li>
+					</ul> 
+				</div>
 			</div>
-		</div>
 
-		<div class="col-8 colm-12">			
-			<h2>Chat <span id="span-cliente"></span></h2>
-			<!-- keep-alive: la instancia del componente se almacena en caché una vez que se crea por primera vez --> 
-			<keep-alive>
-				<component v-bind:is="vistaActual" />
-			</keep-alive>			
+			<div class="col-8 colm-12">			
+				<h2>Chat <span id="span-cliente"></span></h2>
+				
+				<!-- keep-alive: la instancia del componente se almacena en caché una vez que se crea por primera vez --> 
+				<keep-alive>
+					<component v-bind:is="vistaActual" />
+				</keep-alive>			
+			</div>
 		</div>
 	</div>
 </template>
@@ -82,8 +88,8 @@
 			huertas() {
 				return this.$store.state.huertas;
 			},
-			cliente() {
-				return this.$store.state.session.logueado;
+			clienteTipoHuerta() {
+				return this.$store.state.session.tipoHuerta;
 			}
 		},
 		
@@ -94,22 +100,22 @@
 		
 		data() {
             return {
-            	isActive: false,
                 componente: 'ChatMensaje',
                 vistaActual: 'ChatMensajeVacio'
             }
         },
 
 		methods:{
-			CargarChatMensaje(vista, cliente) {                
+			CargarChatMensaje(vista, usuario) {                
                 this.vistaActual = vista;
 
-				console.log('Tomo cliente:' + cliente.nombre);
+                let nombreDelUsuarioDelChat = document.getElementById('span-cliente');
 
-				let spanCliente = document.getElementById('span-cliente');
-				spanCliente.innerHTML = 'con ' + cliente.nombre;
-
-				this.isActive = !this.isActive;
+                if (this.clienteTipoHuerta == true) {
+					nombreDelUsuarioDelChat.innerHTML = 'con ' + usuario.nombre;
+                } else {
+					nombreDelUsuarioDelChat.innerHTML = 'con ' + usuario.nombre_huerta;
+                }
             }
 		}
 	}
@@ -153,7 +159,7 @@
 		font-size: 10px;
 		color: #696969;
 	}
-	.li-cliente-seleccionado{
-		background-color: grey;
+	.listado-clientes {
+		cursor: pointer;
 	}
 </style>

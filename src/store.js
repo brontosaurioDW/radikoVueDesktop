@@ -45,7 +45,7 @@ export default new Vuex.Store({
 		huertas: [],
 		session: {
 			auth: authFlag,
-			logueado: statusFlag,
+			tipoHuerta: statusFlag,
 			user: {
 				id_usuario: null,
 				nombre: null,
@@ -104,9 +104,9 @@ export default new Vuex.Store({
 			}	
 
 			if (localStorage.getItem('usuario_logueado_tipo') != 'cliente') {
-				state.session.logueado = true;
+				state.session.tipoHuerta = true;
 			} else {
-			    state.session.logueado = false;
+			    state.session.tipoHuerta = false;
 			}		
 		},
 		setSessionLogout(state) {

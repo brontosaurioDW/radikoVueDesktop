@@ -66,7 +66,7 @@
 
 		computed: {	
 			cliente() {
-				return this.$store.state.session.logueado
+				return this.$store.state.session.tipoHuerta
 			}
 		},
 
