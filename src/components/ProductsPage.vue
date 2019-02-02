@@ -35,7 +35,7 @@
 		computed: {
 			unidades() {
 				return this.$store.state.unidades;
-			}
+			},
 		},
 		mounted() {
 			this.$store.dispatch('loadUnidades')

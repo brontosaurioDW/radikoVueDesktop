@@ -73,7 +73,7 @@
 					email 		: this.usuario.email,
 					password  	: this.usuario.password
 				}).then(() => {
-					this.$router.push('/');
+					this.$router.push('/products');
 				}).catch(() => {
 					this.hasError = true
 					this.errorMsj = 'Email y/o password incorrectos'

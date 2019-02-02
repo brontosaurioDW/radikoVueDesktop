@@ -17,7 +17,7 @@ const router = new Router({
     routes: [{
         path: '/',
         name: 'home',
-        component: Home,
+        component: ProductsPage,
         meta: {
             title: 'Radiko - Inicio',
             requiresAuth: true,
@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
         if (store.state.session.auth == true) {
             next();
 
-            if (store.state.session.logueado == true) {  
+            if (store.state.session.tipoHuerta == true) {  
                 next();
             } else {
                 next({

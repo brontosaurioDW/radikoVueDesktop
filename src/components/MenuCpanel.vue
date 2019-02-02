@@ -1,7 +1,7 @@
 <template>
 	<header class="col-left">
 		<h1>
-			<router-link to="/" class="nav-link">
+			<router-link to="/products" class="nav-link">
 				Radiko
 			</router-link>
 		</h1>

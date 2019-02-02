@@ -68,7 +68,6 @@
 						// Hack horrible.
 						// let productos = this.$store.state.productos;
 
-						// console.log(this.productosState, this.i);
 						let productos = JSON.parse(JSON.stringify(this.productosState));
 						productos.splice(this.i, 1);
 

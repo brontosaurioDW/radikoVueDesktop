@@ -497,9 +497,9 @@ COMMIT;
 START TRANSACTION;
 USE `DW6_RADIKO`;
 INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (1, 'Jardín Orgánico', 30354568459, 'Huerta S.A.', NULL, 15, 'organico.jpg', 1, 1, 9);
-INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (2, 'Huertas Orgánicas Urbana', 33214569528, 'Gonzales y Perez S.R.L', 'Av. Estado de Israel 4799', 20, 'huertaorganica.jpg', 1, 2, 10);
+INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (2, 'La huerta Orgánica', 33214569528, 'Gonzales y Perez S.R.L', 'Av. Estado de Israel 4799', 20, 'huertaorganica.png', 1, 2, 10);
 INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (3, 'Tallo Verde', 34245632145, 'Tallo S.A.', 'Ruta 192 Km. 8 - Open Door - Luján', 10, 'talloverde.jpg', 1, 2, 11);
-INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (4, 'Estilo Orgánico', 30457896529, 'Gatofer y Asociados', '3 de Febrero 940 San Isidro Buenos ', 25, 'estiloorganico.png', 1, 1, 12);
+INSERT INTO `DW6_RADIKO`.`HUERTAS` (`id_huerta`, `nombre_huerta`, `cuit`, `razon_social`, `direccion`, `cantidad_max_envios`, `foto_huerta`, `activo`, `TIPO_HUERTA_id_tipo_huerta`, `USUARIOS_id_usuario`) VALUES (4, 'Estilo Orgánico', 30457896529, 'Gatofer y Asociados', '3 de Febrero 940 San Isidro Buenos ', 25, 'estiloorganico.jpg', 1, 1, 12);
 
 COMMIT;
 

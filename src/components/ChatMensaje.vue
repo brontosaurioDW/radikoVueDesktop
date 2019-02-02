@@ -98,7 +98,7 @@
 				/*refMensajes.push(this.newMensaje);
 				//limpiamos
 				this.newMensaje.mensaje = '';*/
-				console.log(this.usuarioLogueado);
+				
 				if(this.newMensaje.mensaje){
 					refMensajes.push({
 						autor: this.usuarioLogueado,

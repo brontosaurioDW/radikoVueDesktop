@@ -342,15 +342,15 @@ h3 {
 
 .dashboard .col-left {
     background: #262626;
-    width: 20%;
-    max-width: 310px;
+    width: 19%;
+    max-width: 365px;
     padding: 30px;
     min-height: 100vh;
 }
 
 .dashboard .col-right {
     background: #F3F3F3;
-    width: 80%;
+    width: 81%;
     padding: 30px;
     min-height: 100vh;
 }

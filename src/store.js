@@ -7,19 +7,19 @@ Vue.use(Vuex);
 
 // Seteamos la variable auth en null si no hay un local storage guardado
 var authFlag 	= false;
-var statusFlag 	= null;
+var tipoClienteFlag = null;
 
 if(localStorage.getItem('usuario_logueado_token')) {
 	authFlag = true;
 
 	if(localStorage.getItem('usuario_logueado_tipo') != 'cliente') {
-		statusFlag = true;
+		tipoClienteFlag = true;
 	} else {
-		statusFlag = false;
+		tipoClienteFlag = false;
 	}
 } else {
 	authFlag = false;
-	statusFlag 	= null;
+	tipoClienteFlag = null;
 }
 
 export default new Vuex.Store({
@@ -27,16 +27,6 @@ export default new Vuex.Store({
 		layout: 'login-layout',
 		huerta: [],
 		pedidos: [],
-		// producto: {
-		// 	producto: '',
-		// 	descripcion: '',
-		// 	marca: '',
-		// 	precio: '',
-		// 	stock: '',
-		// 	categoria: '',
-		// 	estado: '',
-		// 	unidad: ''
-		// },
 		producto: {},
 		productos: [],
 		categorias: [],
@@ -45,7 +35,7 @@ export default new Vuex.Store({
 		huertas: [],
 		session: {
 			auth: authFlag,
-			tipoHuerta: statusFlag,
+			tipoHuerta: tipoClienteFlag,
 			user: {
 				id_usuario: null,
 				nombre: null,
@@ -118,12 +108,15 @@ export default new Vuex.Store({
 
 	actions: {
 
-		loadDatosHuerta(context) {
-			fetch( apiRoute + 'huerta.php?id=1')
-			.then(respuesta => respuesta.json())
-			.then(data => {
-				context.commit('setHuerta', data);
-			});
+		loadDatosHuerta(context, id) {
+			return new Promise((resolve, reject) => {
+				fetch(apiRoute + 'huerta.php?id=' + id)
+				.then(response => response.json())
+				.then(data => {
+					context.commit('setHuerta', data);
+					resolve()
+				})
+			})	
 		},
 
 		loadPedidos(context) {
@@ -135,7 +128,7 @@ export default new Vuex.Store({
 		},
 
 		loadProducts(context) {
-			fetch(apiRoute + 'productos.php')
+			fetch(apiRoute + 'productos.php?id=' + localStorage.getItem('usuario_logueado_id'))
 			.then(response => response.json())
 			.then(data => {
 				context.commit('setProducts', data);

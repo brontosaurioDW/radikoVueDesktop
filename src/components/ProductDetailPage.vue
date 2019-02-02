@@ -24,23 +24,23 @@
 				<div class="product-right">
 					<h3>Info del producto</h3>
 					<table class="table-c">
-						<tr>
+						<tr v-if="producto.marca">
 							<th>Marca</th>
 							<td>{{ producto.marca }}</td>
 						</tr>
-						<tr>
+						<tr v-if="producto.precio">
 							<th>Precio</th>
 							<td>$ {{ producto.precio }}</td>
 						</tr>
-						<tr>
+						<tr v-if="producto.publicado">
 							<th>Publicado</th>
 							<td>{{ publicado }}</td>
 						</tr>
-						<tr>
+						<tr v-if="producto.categoria">
 							<th>Categoria</th>
 							<td>{{ producto.categoria }}</td>
 						</tr>
-						<tr class="stock-ok"> <!-- class="stock-no" si no hay stock -->
+						<tr v-if="producto.stock" class="stock-ok"> <!-- class="stock-no" si no hay stock -->
 							<th>Stock</th>
 							<td class="bold">{{ producto.stock }} {{ producto.unidad }}</td>
 						</tr>								
@@ -73,7 +73,7 @@
 			imagen(){
 				if (this.producto.foto != null) {
 					return {
-						path: require("../assets/img/" + this.producto.foto)
+						path: require("../assets/img/productos/" + this.producto.foto)
 					};
 				} else {
 					return {
