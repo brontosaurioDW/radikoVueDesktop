@@ -1,24 +1,24 @@
-Instrucciones
+﻿Instrucciones
 --------------
 
 - La llamada a la api se esta configurada para la siguiente dirección:
-
 apiRoute = 'http://localhost/radikoVueDesktop/api/';
+
 
 - Usuarios y contraseñas disponibles:
 
-usuario:lau@mail.com
-password: 123
-usuario:emi@mail.com
-password: 123
-usuario:flor@mail.com
-password: 123
-usuario:fespi@mail.com
-password: 123
+  HUERTAS:
+	- info@jardinorganico.com.ar
+	- hola@huertaorganica.com.ar
+	- huerta@talloverde.com
+	- info@estilorganico.com
 
-- Errores =) (no tan ez pz)
+	
 
-* Para ingresar en la aplicación hay que hacer doble click en el boton de INGRESAR
-* Al ingresar al sistema no setea la cookie
-* Al refrescar la página se pierde la session
-* Al Eliminar un producto hay que refrescar la página para que haga efecto
+  CLIENTES:
+	- ger@mail.com
+	- fede@mail.com
+	- mabe@mail.com
+	- santi@mail.com	
+
+  Passwords para todos: 123
