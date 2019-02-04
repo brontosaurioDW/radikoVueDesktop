@@ -14,6 +14,9 @@ export default {
   name: 'productsCreate',
   components: {
     ProductsCreateFormPage
-  }
+  },
+  	created () {
+		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	}
 }
 </script>
