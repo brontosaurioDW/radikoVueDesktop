@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true}">
+		<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true, scrollonremoved: true}">
 			<p v-if="!mensajes[0]">
 				[No tienes ningún mensaje todavía]
 			</p>
