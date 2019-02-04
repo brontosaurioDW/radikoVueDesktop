@@ -43,7 +43,7 @@
 
 							<div class="flex">
 								<div class="chat-user-photo">
-									<img src="../assets/img/user-default.png" alt="Foto huerta" />
+									<img :src="imagen(huerta).path" :alt="imagen(huerta).alt" />
 								</div>
 								<div class="chat-user-data">
 									<span>{{ huerta.nombre_huerta }}</span>
@@ -120,12 +120,25 @@
 			imagen(cliente){
 				if(cliente.foto != null){
 					return{
-						path: '/img/' + cliente.foto,
+						path: require("../assets/img/" + cliente.foto),
 						alt: 'Foto de ' + cliente.nombre + ' ' + cliente.apellido
 					} 
 				}else{
 					return{
-						path: '/img/user-default.png',
+						path: require("../assets/img/user-default.png"),
+						alt: 'Imagen de perfil por defecto'
+					} 
+				}	
+			},
+			imagen(huerta){
+				if(huerta.foto_huerta != null){
+					return{
+						path: require("../assets/img/" + huerta.foto_huerta),
+						alt: 'Foto de ' + huerta.nombre_huerta
+					} 
+				}else{
+					return{
+						path: require("../assets/img/user-default.png"),
 						alt: 'Imagen de perfil por defecto'
 					} 
 				}	
