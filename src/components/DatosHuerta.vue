@@ -32,7 +32,7 @@
 			imagen(){
 				if (this.huerta.foto_huerta != null) {
 					return {
-						path: require("../assets/img/" + this.huerta.foto_huerta)
+						path: require("../assets/img/huertas/" + this.huerta.foto_huerta)
 					};
 				} else {
 					return {

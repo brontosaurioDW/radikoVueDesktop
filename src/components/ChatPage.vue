@@ -21,7 +21,7 @@
 
 							<div class="flex">
 								<div class="chat-user-photo">
-									<img :src="imagen(cliente).path" :alt="imagen(cliente).alt" />
+									<img :src="ImagenCliente(cliente).path" :alt="ImagenCliente(cliente).alt" />
 								</div>
 								<div class="chat-user-data">
 									<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
@@ -43,7 +43,7 @@
 
 							<div class="flex">
 								<div class="chat-user-photo">
-									<img :src="imagen(huerta).path" :alt="imagen(huerta).alt" />
+									<img :src="ImagenHuerta(huerta).path" :alt="ImagenHuerta(huerta).alt" />
 								</div>
 								<div class="chat-user-data">
 									<span>{{ huerta.nombre_huerta }}</span>
@@ -117,10 +117,10 @@
 					nombreDelUsuarioDelChat.innerHTML = 'con ' + usuario.nombre_huerta;
                 }
             },
-			imagen(cliente){
+			ImagenCliente(cliente){
 				if(cliente.foto != null){
 					return{
-						path: require("../assets/img/" + cliente.foto),
+						path: require("../assets/img/usuarios/" + cliente.foto),
 						alt: 'Foto de ' + cliente.nombre + ' ' + cliente.apellido
 					} 
 				}else{
@@ -130,10 +130,10 @@
 					} 
 				}	
 			},
-			imagen(huerta){
+			ImagenHuerta(huerta){
 				if(huerta.foto_huerta != null){
 					return{
-						path: require("../assets/img/" + huerta.foto_huerta),
+						path: require("../assets/img/huertas/" + huerta.foto_huerta),
 						alt: 'Foto de ' + huerta.nombre_huerta
 					} 
 				}else{
