@@ -44,13 +44,13 @@
 	import Firebase from 'firebase';
 	
 	var config = {
-		apiKey: "AIzaSyASnf0ZeHB3PmVt_hxPxZDCqZGaz2HGKaY",
-		authDomain: "radikochat-v2.firebaseapp.com",
-		databaseURL: "https://radikochat-v2.firebaseio.com",
-		projectId: "radikochat-v2",
-		storageBucket: "radikochat-v2.appspot.com",
-		messagingSenderId: "943658148967"
-	}
+		apiKey: "AIzaSyARk56_VHK1MmRStD9nDwCPxiDUfkfM6b8",
+		authDomain: "radikochat-ff500.firebaseapp.com",
+		databaseURL: "https://radikochat-ff500.firebaseio.com",
+		projectId: "radikochat-ff500",
+		storageBucket: "radikochat-ff500.appspot.com",
+		messagingSenderId: "99413101533"
+	};
 	let app = Firebase.initializeApp(config);
 	
 	//Obtenemos la instancia de Firebase. La conexión a la base
