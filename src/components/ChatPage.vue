@@ -21,7 +21,7 @@
 
 							<div class="flex">
 								<div class="chat-user-photo">
-									<img src="../assets/img/user-default.png" alt="Foto usuario" />
+									<img :src="imagen(cliente).path" :alt="imagen(cliente).alt" />
 								</div>
 								<div class="chat-user-data">
 									<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
@@ -116,7 +116,20 @@
                 } else {
 					nombreDelUsuarioDelChat.innerHTML = 'con ' + usuario.nombre_huerta;
                 }
-            }
+            },
+			imagen(cliente){
+				if(cliente.foto != null){
+					return{
+						path: '/img/' + cliente.foto,
+						alt: 'Foto de ' + cliente.nombre + ' ' + cliente.apellido
+					} 
+				}else{
+					return{
+						path: '/img/user-default.png',
+						alt: 'Imagen de perfil por defecto'
+					} 
+				}	
+			}
 		}
 	}
 	
