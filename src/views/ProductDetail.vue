@@ -12,6 +12,9 @@ export default {
   name: 'product',
   components: {
     ProductDetailPage
-  }
+  },
+  	created () {
+		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	}
 }
 </script>

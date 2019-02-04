@@ -14,6 +14,9 @@ export default {
   name: 'productsEdit',
   components: {
     ProductsEditFormPage
-  }
+  },
+  	created () {
+		this.$store.commit('SET_LAYOUT', 'principal-layout')
+	}
 }
 </script>
