@@ -13,7 +13,7 @@
 				<div id="clientes" class="simple-box">
 
 					<ul v-if="clienteTipoHuerta == true">
-						<li v-on:click="CargarChatMensaje(componente, cliente)" 
+						<li v-on:click="CargarChatMensaje(componente, cliente, cliente.id_usuario)" 
 							v-for="cliente in clientes" 
 							:cliente="cliente.id_usuario" 
 							:id="cliente.nombre" 
@@ -35,7 +35,7 @@
 					</ul>
 				
 					<ul v-else-if="clienteTipoHuerta == false">
-						<li v-on:click="CargarChatMensaje(componente, huerta)" 
+						<li v-on:click="CargarChatMensaje(componente, huerta, huerta.USUARIOS_id_usuario)" 
 							v-for="huerta in huertas" 
 							:huerta="huerta.id_huerta" 
 							:id="huerta.nombre_huerta" 
@@ -62,7 +62,7 @@
 				
 				<!-- keep-alive: la instancia del componente se almacena en caché una vez que se crea por primera vez --> 
 				<keep-alive>
-					<component v-bind:is="vistaActual" />
+					<component v-bind:is="vistaActual" :idDelOtroUsuario="idDelOtroUsuario" :mensajesPrivados="mensajesPrivados" />
 				</keep-alive>			
 			</div>
 		</div>
@@ -72,9 +72,15 @@
 <script>
 	import ChatMensaje from './ChatMensaje.vue';
 	import ChatMensajeVacio from './ChatMensajeVacio.vue';
+
+	import { refMensajes } from '../firebase.js';
   
 	export default {
 		name: 'chat',
+
+		firebase:{
+			mensajes: refMensajes
+		},
 		
 		components: {
 			ChatMensaje,
@@ -101,12 +107,15 @@
 		data() {
             return {
                 componente: 'ChatMensaje',
-                vistaActual: 'ChatMensajeVacio'
+                vistaActual: 'ChatMensajeVacio',
+                idDelOtroUsuario: '',
+                idDelUsuarioLogueado: localStorage.getItem('usuario_logueado_id'),
+                mensajesPrivados: []
             }
         },
 
 		methods:{
-			CargarChatMensaje(vista, usuario) {                
+			CargarChatMensaje(vista, usuario, id) {                
                 this.vistaActual = vista;
 
                 let nombreDelUsuarioDelChat = document.getElementById('span-cliente');
@@ -116,7 +125,24 @@
                 } else {
 					nombreDelUsuarioDelChat.innerHTML = 'con ' + usuario.nombre_huerta;
                 }
+
+                this.idDelOtroUsuario = id;
+
+            	var usuario1 = this.idDelUsuarioLogueado;
+            	var usuario2 = id;	
+            	var nombreDelChat = 'chat_' + (usuario1 < usuario2 ? usuario1 + '_' + usuario2 : usuario2 + '_' + usuario1);
+            	var mensajesPrivados = [];
+
+            	refMensajes.orderByChild('nombreChat').equalTo(nombreDelChat).on('child_added', function(data) {
+            		mensajesPrivados.push({
+            			id: data.key, 
+            			data: data.val()
+            		});
+            	});
+
+            	this.mensajesPrivados = mensajesPrivados;
             },
+
 			ImagenCliente(cliente){
 				if(cliente.foto != null){
 					return{
@@ -130,6 +156,7 @@
 					} 
 				}	
 			},
+
 			ImagenHuerta(huerta){
 				if(huerta.foto_huerta != null){
 					return{

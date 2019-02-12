@@ -1,17 +1,17 @@
 <template>
 	<div>
-		<div id="mensajes" class="simple-box" v-chat-scroll="{always: false, smooth: true, scrollonremoved: true}">
-			<p v-if="!mensajes[0]">
+		<div id="mensajes" class="simple-box" :idDelOtroUsuario="idDelOtroUsuario" v-chat-scroll="{always: false, smooth: true, scrollonremoved: true}">
+			<p v-if="!mensajesPrivados[0]">
 				[No tienes ningún mensaje todavía]
 			</p>
 			<ul v-else> 
-				<li v-for="m in mensajes" :key="m.id" :class="{'mensaje-usuario-logueado' : usuarioLogueado==m.autor}">	
+				<li v-for="m in mensajesPrivados" :key="m.data.id" :class="{'mensaje-usuario-logueado' : usuarioLogueado==m.data.autor}">	
 					<div class="mensaje-wrapper">
 						<div class="mensaje-texto">
-							<span>{{m.autor}}</span>
-							<span>{{m.mensaje}}</span>
+							<span>{{m.data.autor}}</span>
+							<span>{{m.data.mensaje}}</span>
 						</div>	
-						<span class="mensaje-hora">{{m.time}}</span>
+						<span class="mensaje-hora">{{m.data.time}}</span>
 					</div>
 				</li>
 			</ul>
@@ -41,25 +41,7 @@
 
 <script>
 
-	import Firebase from 'firebase';
-	
-	var config = {
-		apiKey: "AIzaSyARk56_VHK1MmRStD9nDwCPxiDUfkfM6b8",
-		authDomain: "radikochat-ff500.firebaseapp.com",
-		databaseURL: "https://radikochat-ff500.firebaseio.com",
-		projectId: "radikochat-ff500",
-		storageBucket: "radikochat-ff500.appspot.com",
-		messagingSenderId: "99413101533"
-	};
-	let app = Firebase.initializeApp(config);
-	
-	//Obtenemos la instancia de Firebase. La conexión a la base
-	let fbdb = app.database();
-  
-	//LLAMAR A LOS DATOS DE LA BASE
-	
-	//Tenemos que crear referencias usando el método ref(url). La url es el nodo del Json al que queremos acceder
-	let refMensajes = fbdb.ref('mensajes');
+	import { refMensajes } from '../firebase.js';
 	
 	export default {
 		name: 'ChatMensaje',
@@ -67,21 +49,27 @@
 		firebase:{
 			mensajes: refMensajes
 		},
+
+		props: {
+			idDelOtroUsuario: String,
+			mensajesPrivados: Array
+		},
 		
 		data(){
 			return{
 				newMensaje: {
+					nombreChat: '',
 					autor: '',
 					mensaje: '',
-					time: '' /* la obtenemos del this.hoy */
+					time: '' 
 				},
 				hoy : null,
 				feedback: null,
-				usuarioLogueado: localStorage.getItem('usuario_logueado_nombre')
+				usuarioLogueado: localStorage.getItem('usuario_logueado_nombre'),			
+				idDelUsuarioLogueado: localStorage.getItem('usuario_logueado_id'),
 			}		
 		},
-		
-		//El objeto Vue tendrá una propiedad/variable llamada hoy que al cargarse la aplicación (crearse el objeto Vue) se actualizará con la fecha de hoy. Enero arranca en 0 -modificar-
+
 		created : function(){
 			this.hoy = new Date();
 			this.newMensaje.time = 
@@ -92,27 +80,31 @@
 				new Date(this.hoy).getMinutes();
 		},
   
-		methods:{
-			//guardamos
+		methods: {
 			guardarMensaje(){
-				/*refMensajes.push(this.newMensaje);
-				//limpiamos
-				this.newMensaje.mensaje = '';*/
 				
 				if(this.newMensaje.mensaje){
+					var usuario1 = this.idDelUsuarioLogueado;
+					var usuario2 = this.idDelOtroUsuario;	
+					var nombreDelChat = 'chat_' + (usuario1 < usuario2 ? usuario1 + '_' + usuario2 : usuario2 + '_' + usuario1);
+
 					refMensajes.push({
+						nombreChat: nombreDelChat,
 						autor: this.usuarioLogueado,
+						idDelOtroUsuario: this.idDelOtroUsuario,
+						idDelUsuarioLogueado: this.idDelUsuarioLogueado,
 						mensaje: mensaje.value,
 						time: this.newMensaje.time
-					}).then(function(){
-					mensaje.value = "";
-					});					
-				}else{
-					this.feedback = "Debes escribir algo"
+					}).then(function() {
+						mensaje.value = '';
+					});
+
+					
+				} else {
+					this.feedback = 'Debes escribir algo'
 				}		
 			}
 		}
-		
 	}	
 </script>
 

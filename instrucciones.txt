@@ -13,12 +13,10 @@ apiRoute = 'http://localhost/radikoVueDesktop/api/';
 	- huerta@talloverde.com
 	- info@estilorganico.com
 
-	
-
   CLIENTES:
-	- ger@mail.com
-	- fede@mail.com
-	- mabe@mail.com
-	- santi@mail.com	
+	- ramiro@mail.com
+	- lucas@mail.com
+	- daniela@mail.com
+	- nacho@mail.com
 
-  Passwords para todos: 123
+	Passwords para todos: 123
