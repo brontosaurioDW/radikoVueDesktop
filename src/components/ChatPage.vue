@@ -25,12 +25,8 @@
 								</div>
 								<div class="chat-user-data">
 									<span>{{ cliente.nombre}} {{ cliente.apellido}} </span>
-									<span>#{{ cliente.id_usuario}} es el id del usuario</span>
 								</div>
 							</div>
-							<div class="chat-hora">
-								<span>10:06</span>
-							</div>	
 						</li>
 					</ul>
 				
@@ -49,9 +45,6 @@
 									<span>{{ huerta.nombre_huerta }}</span>
 								</div>
 							</div>
-							<div class="chat-hora">
-								<span>10:06</span>
-							</div>	
 						</li>
 					</ul> 
 				</div>
@@ -102,6 +95,7 @@
 		mounted() {
 			this.$store.dispatch('loadClientes');
 			this.$store.dispatch('loadHuertas');
+			this.ActiveListItem();
 		},
 		
 		data() {
@@ -115,7 +109,8 @@
         },
 
 		methods:{
-			CargarChatMensaje(vista, usuario, id) {                
+			CargarChatMensaje(vista, usuario, id) {   
+
                 this.vistaActual = vista;
 
                 let nombreDelUsuarioDelChat = document.getElementById('span-cliente');
@@ -128,7 +123,7 @@
 
                 this.idDelOtroUsuario = id;
 
-            	var usuario1 = this.idDelUsuarioLogueado;
+                var usuario1 = this.idDelUsuarioLogueado;
             	var usuario2 = id;	
             	var nombreDelChat = 'chat_' + (usuario1 < usuario2 ? usuario1 + '_' + usuario2 : usuario2 + '_' + usuario1);
             	var mensajesPrivados = [];
@@ -141,6 +136,23 @@
             	});
 
             	this.mensajesPrivados = mensajesPrivados;
+            },
+
+            ActiveListItem(){            	
+				var listContent = document.getElementById('clientes');
+                var liItem = listContent.getElementsByClassName('listado-clientes');
+
+				for (var i = 0; i < liItem.length; i++) {
+					liItem[i].addEventListener('click', function() {
+						var current = document.getElementsByClassName('active');
+
+						if (current.length > 0) { 
+							current[0].className = current[0].className.replace(' active', '');
+						}
+
+						this.className += ' active';
+					});
+				}
             },
 
 			ImagenCliente(cliente){
@@ -185,9 +197,12 @@
 	#clientes li{
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 5px;
-		padding: 15px 0;
+		margin: 0;
+		padding: 15px 10px;
 		border-bottom: 1px solid #ddd;
+	}
+	#clientes li.active {
+		background: #f3f3f3;
 	}
 	.chat-user-photo img{
 		max-width: 36px;

@@ -98,8 +98,6 @@
 					}).then(function() {
 						mensaje.value = '';
 					});
-
-					
 				} else {
 					this.feedback = 'Debes escribir algo'
 				}		
@@ -171,6 +169,7 @@
 	#mensajes span{
 		display: block;
 		font-size: 14px;
+		line-height: 150%;
 	}
 	#mensajes span:nth-child(1){
 		margin-bottom: 10px;
