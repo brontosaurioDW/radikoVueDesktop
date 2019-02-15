@@ -17,7 +17,7 @@
 							v-for="cliente in clientes" 
 							:cliente="cliente.id_usuario" 
 							:id="cliente.nombre" 
-							class="listado-clientes">
+							:class="[cliente.id_usuario == idDelOtroUsuario ? 'selected' : '']">
 
 							<div class="flex">
 								<div class="chat-user-photo">
@@ -35,7 +35,7 @@
 							v-for="huerta in huertas" 
 							:huerta="huerta.id_huerta" 
 							:id="huerta.nombre_huerta" 
-							class="listado-clientes">
+							:class="[huerta.USUARIOS_id_usuario == idDelOtroUsuario ? 'selected' : '']">
 
 							<div class="flex">
 								<div class="chat-user-photo">
@@ -95,7 +95,6 @@
 		mounted() {
 			this.$store.dispatch('loadClientes');
 			this.$store.dispatch('loadHuertas');
-			this.ActiveListItem();
 		},
 		
 		data() {
@@ -104,7 +103,7 @@
                 vistaActual: 'ChatMensajeVacio',
                 idDelOtroUsuario: '',
                 idDelUsuarioLogueado: localStorage.getItem('usuario_logueado_id'),
-                mensajesPrivados: []
+                mensajesPrivados: [],
             }
         },
 
@@ -129,30 +128,17 @@
             	var mensajesPrivados = [];
 
             	refMensajes.orderByChild('nombreChat').equalTo(nombreDelChat).on('child_added', function(data) {
-            		mensajesPrivados.push({
-            			id: data.key, 
-            			data: data.val()
-            		});
+            		if (data) {
+	            		mensajesPrivados.push({
+	            			id: data.key, 
+	            			data: data.val()
+	            		});
+            		} else {
+						this.mensajesPrivados = []            			
+            		}
             	});
 
             	this.mensajesPrivados = mensajesPrivados;
-            },
-
-            ActiveListItem(){            	
-				var listContent = document.getElementById('clientes');
-                var liItem = listContent.getElementsByClassName('listado-clientes');
-
-				for (var i = 0; i < liItem.length; i++) {
-					liItem[i].addEventListener('click', function() {
-						var current = document.getElementsByClassName('active');
-
-						if (current.length > 0) { 
-							current[0].className = current[0].className.replace(' active', '');
-						}
-
-						this.className += ' active';
-					});
-				}
             },
 
 			ImagenCliente(cliente){
@@ -200,14 +186,26 @@
 		margin: 0;
 		padding: 15px 10px;
 		border-bottom: 1px solid #ddd;
+		cursor: pointer;
+		transition: .3s;
 	}
-	#clientes li.active {
-		background: #f3f3f3;
-	}
+
 	.chat-user-photo img{
-		max-width: 36px;
+		max-width: 40px;
 		margin-right: 10px;
+		line-height: 0;
+		transition: .3s;
 	}
+
+	#clientes li.selected {
+		background: #f3f3f3;
+		padding: 10px;
+	}
+
+	#clientes li.selected img {
+		max-width: 50px;
+	}
+
 	.chat-user-data{
 		width: 265px;
 	}
@@ -216,7 +214,6 @@
 	}
 	.chat-user-data span:nth-child(1){
 		display: block;
-		margin-bottom: 5px;
 		font-family: "Ebrima-Bold";
 		text-transform: uppercase;
 	}

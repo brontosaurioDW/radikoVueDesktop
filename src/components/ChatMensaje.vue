@@ -22,13 +22,7 @@
 				<p v-if="feedback">{{ feedback }}</p>
 				<div class="wrap-input">
 					<label class="label-input">Mensaje</label>
-					<textarea 
-						id="mensaje"
-						class="textarea" 
-						cols="15"
-						rows="3"
-						v-model="newMensaje.mensaje">
-					</textarea>
+					<textarea id="mensaje" class="textarea" cols="15" rows="3" v-model="newMensaje.textoDelMensaje"></textarea>
 				</div>
 			
 				<div class="text-right">
@@ -79,29 +73,32 @@
 				new Date(this.hoy).getHours() + ":" +
 				new Date(this.hoy).getMinutes();
 		},
-  
+
 		methods: {
-			guardarMensaje(){
-				
-				if(this.newMensaje.mensaje){
-					var usuario1 = this.idDelUsuarioLogueado;
-					var usuario2 = this.idDelOtroUsuario;	
+			guardarMensaje() {
+				var self = this;
+
+				var mensajeModel = self.newMensaje.textoDelMensaje;
+
+				if(mensajeModel){
+					var usuario1 = self.idDelUsuarioLogueado;
+					var usuario2 = self.idDelOtroUsuario;	
 					var nombreDelChat = 'chat_' + (usuario1 < usuario2 ? usuario1 + '_' + usuario2 : usuario2 + '_' + usuario1);
 
 					refMensajes.push({
 						nombreChat: nombreDelChat,
-						autor: this.usuarioLogueado,
-						idDelOtroUsuario: this.idDelOtroUsuario,
-						idDelUsuarioLogueado: this.idDelUsuarioLogueado,
-						mensaje: mensaje.value,
-						time: this.newMensaje.time
+						autor: self.usuarioLogueado,
+						idDelOtroUsuario: self.idDelOtroUsuario,
+						idDelUsuarioLogueado: self.idDelUsuarioLogueado,
+						mensaje: mensajeModel,
+						time: self.newMensaje.time
 					}).then(function() {
-						mensaje.value = '';
+						self.newMensaje.textoDelMensaje = '';
 					});
 				} else {
 					this.feedback = 'Debes escribir algo'
 				}		
-			}
+			},
 		}
 	}	
 </script>
@@ -127,7 +124,7 @@
 	.mensaje-texto {
 		padding: 25px;
 		position: relative;
-		background-color: #ededed;
+		background-color: #f3f3f3;
 		color: #656464;
 	}	
 	.mensaje-texto:before {
@@ -135,7 +132,7 @@
 		display: block;
 		width: 0;
 		height: 0;
-		border-right: 10px solid #ededed;
+		border-right: 10px solid  #f3f3f3;
 		border-top: 10px solid transparent;
 		border-bottom: 10px solid transparent;
 		position: absolute;
