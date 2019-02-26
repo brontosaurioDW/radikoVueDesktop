@@ -19,7 +19,7 @@
 		
 		<form id="chat" class="form" @submit.prevent="guardarMensaje">
 			<div class="form-row">
-				<p v-if="feedback">{{ feedback }}</p>
+				<p v-if="feedback" class="error">{{ feedback }}</p>
 				<div class="wrap-input">
 					<label class="label-input">Mensaje</label>
 					<textarea id="mensaje" class="textarea" cols="15" rows="3" v-model="newMensaje.textoDelMensaje"></textarea>
